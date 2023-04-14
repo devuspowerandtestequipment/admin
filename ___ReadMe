@@ -1,0 +1,209 @@
+Reff Website
+https://www.aquazones.in
+
+https://www.bunnycart.com/aquarium-plants
+
+
+======
+- viewConfig 237
+
+
+tax system add dropdown config3
+
+
+=================================================================
+=================================================================
+NEW TEMPLETE->>>>>>>>>>>>>>>> https://preview.keenthemes.com/metronic8/demo39/dashboards/ecommerce.html
+=================================================================
+=================================================================
+
+
+
+=======SEARCH PRODUCT NAME
+https://stackoverflow.com/questions/21417711/search-multiple-fields-for-multiple-values-in-mongodb
+
+
+======================================================
+*https://codecanyon.net/item/laravel-ecommerce-universal-ecommercestore-full-website-with-themes-and-advanced-cmsadmin-panel/22334657
+https://rawal-admin.themes-coder.net/admin/login 
+Owner Login:
+username: owner@email.com
+password: 123
+
+*https://codecanyon.net/item/topcommerce-laravel-multi-vendor-ecommerce-script/36231125 (Best Order System)
+Admin Panel: https://websolutionus.com/cc/topcommerce/admin 
+Admin Panel Login: admin@gmail.com | 1234
+
+*https://codecanyon.net/item/visershop-ecommerce-shopping-platform/34603358 (Custom CSS)
+https://script.viserlab.com/visershop/admin 
+Login By Browser
+Login By OS
+Login By Country
+
+*https://codecanyon.net/item/nextly-ecommerce-nodejs-expressjs-nextjs-mongodb-tailwindcss-ant-design/36538739 (best for config products)
+Admin demo: https://admin.nextly.shop 
+Email: superadmin@nextly.shop
+Pass: 123456
+
+
+
+*https://codecanyon.net/item/farmart-single-or-multivendor-laravel-ecommerce-system/37567853
+======================================================
+
+
+MAGENTO 2
+https://bsscommerce.com/blog/magento-2-demo-free-with-sample-data/
+
+
+
+PRODUCT VARIANTS
+https://stackoverflow.com/questions/66521397/create-product-variants-based-on-attributes
+
+
+
+https://thenestery.in/collections/shop-play-newborn-toys/category_creative-pretend-play+type_building-toys
+
+
+
+TEXT EDITOR ANT DESIGN
+https://adarshaacharya.com.np/blog/integrate-react-quill-with-antd-forms
+
+SEPARATE URL PARAMETERS
+https://www.sitepoint.com/get-url-parameters-with-javascript/
+
+
+
+
+https://www.npmjs.com/package/react-multi-switch-toggle
+
+
+
+
+
+++++++++++++++ GET MIN AND MAX VALUE OF ARRAY ++++++++++++++++++++
+https://melvingeorge.me/blog/lowest-highest-number-array-javascript
+
+
+
+====Image Upload====
+https://rawal-admin.themes-coder.net/admin/product-category#
+
+
+
+
+
+
+
+
+
+
+
+
+============================================
+[
+  {
+    "key": 1,
+    "price": {
+      "price_heighest": 100,
+      "price_lowest": 100
+    }
+  },
+  {
+    "key": 2,
+    "price": {
+      "price_heighest": 200,
+      "price_lowest": 200
+    }
+  },
+  {
+    "key": 3,
+    "price": {
+      "price_heighest": 300,
+      "price_lowest": 300
+    }
+  },
+  {
+    "key": 4,
+    "price": {
+      "price_heighest": 400,
+      "price_lowest": 400
+    }
+  },
+  {
+    "key": 5,
+    "price": {
+      "price_heighest": 899,
+      "price_lowest": 500
+    }
+  },
+  {
+    "key": 6,
+    "price": {
+      "price_heighest": [
+        799,
+        900,
+        1200,
+        
+      ],
+      "price_lowest": 1200
+    }
+  },
+  
+]
+
+
+db.collection.find({
+  $or: [
+    {
+      "price.price_heighest": {
+        "$gte": 899,
+        "$lte": 901
+      }
+    },
+    
+  ]
+})
+
+
+============================================
+
+
+
+=======React Jquery Sortable===============
+https://codepen.io/mking-clari/pen/pNYjJp
+
+
+
+
+*****Order Placed Design
+https://codecanyon.net/item/clicon-ecommerce-laravel-script/38109314
+
+
+
+
+
+
+
+
+===AQUARIUM PRODUCTS FOR TESTING
+https://www.modernaquarium.com/live-aquarium-plants/plant-types/
+
+===============ERRORS
+- sub category url validation
+- show total numbers in category subcategor Fish(12)
+- Description deleted after added images in product
+
+- sorting category subcategory order
+
+
+https://www.aquazones.in/aquascape/
+
+
+
+
+https://codesandbox.io/s/9zjo1lp86w?file=/src/Components/InputDecimal.jsx
+
+======DECIMAL
+let num = 5.56789;
+let n = num.toFixed(2);
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_tofixed

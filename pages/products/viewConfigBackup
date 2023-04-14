@@ -1,0 +1,445 @@
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import Body from "../components/Body";
+import { Layout, Breadcrumb, PageHeader,Statistic,Row, Col,Button } from "antd";
+import {
+  Pagination,
+  Icon,
+  Table,
+  Menu,
+  Select,
+  Form,
+} from "semantic-ui-react";
+import InfiniteScroll from 'react-infinite-scroll-component';
+import axios from "axios";
+import cookie from 'react-cookies'
+
+import { useRouter } from 'next/router'
+import _, { forEach, isNull } from 'lodash'
+import FindDynamicData from "../components/FindDynamicData";
+const { Content } = Layout;
+
+
+export const index = (props) => {
+  const router = useRouter()
+  const [parentdata, setParentData] = useState(null);
+  const [childDatas, setChildDatas] = useState(null);
+  const [childDatasFiltered, setChildDatasFiltered] = useState(null);
+
+  const [childdatashow, setChildDataShow] = useState(null); //active single child data to show
+  const [childFilterDropdown, setChilldFilterDropdown] = useState(null); //filter dropdown default
+  const [childFilterDropdownSelected, setChilldFilterDropdownSelected] = useState(null);
+  const [childDataAttributeFilter, setChildDataAttributeFilter] = useState(null); 
+
+
+  useEffect(()=>{
+   console.log(router.query.codeid)
+
+   axios.get(`${process.env.backendURL}/product/view_productinfo/Configurable/${router.query.codeid}`)
+   .then(response=>{
+      
+      var childFilterDropdown = {} //dropdown items
+      Object.entries(response.data.parentdata.config_attribues).map((data,number)=>{
+        if(number===0){
+          childFilterDropdown[data[0]]=data[1]
+        }else{
+          // childFilterDropdown[data[0]]=[]
+          childFilterDropdown[data[0]]=data[1]
+        }
+      })
+      setChilldFilterDropdown(childFilterDropdown)
+
+
+      var childFilterDropdownSelected = {} //set dropdown
+      Object.entries(response.data.parentdata.config_attribues).map((data,number)=>{
+        childFilterDropdownSelected[data[0]]=null
+      })
+      setChilldFilterDropdownSelected(childFilterDropdownSelected)
+
+
+
+      setParentData(response.data.parentdata)
+      setChildDatas(response.data.childdata)
+      setChildDataShow(_.find(response.data.childdata,{order:0})) //order 0 child data will save
+      // setChildDataAttributeFilter(_.find(response.data.childdata,{order:0}).config_attribues)
+
+
+      console.log(cookie.load('ecom_dash9437'))
+   })
+
+  
+  },[])
+
+
+  const handleChangeDropdown = (name,value) => {
+
+    if(name==='Group'){
+      
+      setChilldFilterDropdownSelected({
+        ...childFilterDropdownSelected,
+        [name]:value,
+        Size:null,
+        Color:null
+      })
+
+      var tmpDS=childFilterDropdownSelected;
+      tmpDS[name]=value;
+      tmpDS.Size=null;
+      tmpDS.Color=null;
+      
+      setChilldFilterDropdown({
+        ...childFilterDropdown,
+        Size:_.uniq(_.map(_.filter(childDatas,_.omitBy(tmpDS, _.isNil)), 'Size')),
+      })
+
+    }
+
+    if(name==='Size'){
+      setChilldFilterDropdownSelected({
+        ...childFilterDropdownSelected,
+        [name]:value,
+        Color:null
+      })
+
+      var tmpDS=childFilterDropdownSelected;
+      tmpDS[name]=value;
+      tmpDS.Color=null;
+
+      setChilldFilterDropdown({
+        ...childFilterDropdown,
+        Size:_.uniq(_.map(_.filter(childDatas,_.omitBy(tmpDS, _.isNil)), 'Size')),
+        Color:_.uniq(_.map(_.filter(childDatas,_.omitBy(tmpDS, _.isNil)), 'Color')),
+
+      })
+    }
+
+
+    if(name==='Color'){
+      setChilldFilterDropdownSelected({
+        ...childFilterDropdownSelected,
+        [name]:value,
+      })
+    }
+
+  }
+
+
+  // const handleChangeDropdown = e => {
+    
+  //   // console.log(e.target.value)
+  //   // console.log(e.target.name)
+  //   // console.log(e.target.attributes.datakey.value)
+  //   var dropdown_data_filter=childFilterDropdownSelected;
+
+  //   if(e.target.value===''){
+  //     setChilldFilterDropdownSelected({
+  //       ...childFilterDropdownSelected,
+  //       [e.target.name]:null
+  //     })
+  //     dropdown_data_filter[e.target.name]=null;
+  //   }else{
+  //     setChilldFilterDropdownSelected({
+  //       ...childFilterDropdownSelected,
+  //       [e.target.name]:e.target.value
+  //     })
+  //     dropdown_data_filter[e.target.name]=e.target.value;
+  //   }
+
+
+  //   for (let i = 3; i <= 6; i++) {
+  //     console.log(i)
+  //   }
+
+    
+
+    
+    
+  //   dropdown_data_filter=_.omitBy(dropdown_data_filter, _.isNil) //** remove null fields */
+    
+  //   console.log(dropdown_data_filter) 
+
+  //   var nextnumber = Number(e.target.attributes.datakey.value)+1;
+  //   var filterSize = Object.keys(childFilterDropdownSelected).length; //** check length of filter object */
+  //   if(nextnumber===filterSize){
+
+  //     console.log('DOne')
+
+  //   }else{
+
+  //     var nextobjectdata = Object.keys(childFilterDropdownSelected)[Number(e.target.attributes.datakey.value)+1];
+  //     console.log(nextobjectdata)
+      
+  //     var updFilter=childFilterDropdown;
+  //     updFilter[nextobjectdata]=_.uniq(_.map(_.filter(childDatas,_.omitBy(childFilterDropdownSelected, _.isNil)), nextobjectdata));
+
+  //     console.log(updFilter)
+
+
+      
+  
+  //     console.log(dropdown_data_filter)
+
+
+  //   }
+
+
+
+  //   // console.log(_.filter(childDatas,searchTemp))
+
+  //   // var filter_products=_.filter(childDatas,searchTemp);
+    
+
+  
+  //   // var nextnumber = Number(e.target.attributes.datakey.value)+1;
+  //   // var filterSize = Object.keys(dropdown_data).length; //** check length of filter object */
+
+  //   // if(nextnumber===filterSize){
+
+  //   //   console.log('DOne')
+
+  //   // }else{
+  //   //   var nextobjectdata = Object.keys(dropdown_data)[Number(e.target.attributes.datakey.value)+1];
+
+
+
+  //   //   var tmpNameData=[];
+  //   //   filter_products.forEach(element => {
+  //   //     // console.log(element)
+  //   //     tmpNameData.push(element[nextobjectdata])
+  //   //   });
+
+  //   //   var cfd=childFilterDropdown;
+  //   //   cfd[nextobjectdata]=[...new Set(tmpNameData)]; //* Remove duplicates */
+  //   //   setChilldFilterDropdown(cfd)
+
+
+  //   //   console.log(cfd);
+  //   //   console.log(nextobjectdata);
+  //   //   console.log(filter_products)
+
+  //   // }
+
+   
+
+  // }
+
+
+  // console.log(parentdata);
+  // console.log(childDatas);
+
+  
+  console.log(childFilterDropdown);
+
+
+  // console.log(_.omitBy(childFilterDropdownSelected, _.isNil))
+
+  console.log(childFilterDropdownSelected);
+
+
+  // console.log(_.uniq(_.map(childDatas, 'Size')) )
+
+
+  // console.log(_.filter(childDatas,_.omitBy(childFilterDropdownSelected, _.isNil)))
+  // console.log( _.filter(childDatas, { Size: 'S' }))
+
+
+  return (
+    <Body>
+      <Content style={{ margin: "0 16px" }}>
+        <Breadcrumb style={{ margin: "16px 0" }}>
+          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+          <Breadcrumb.Item>Products</Breadcrumb.Item>
+          <Breadcrumb.Item>View</Breadcrumb.Item>
+        </Breadcrumb>
+        
+        {/* {props.dynamic_datas  
+        && */}
+        
+        <div
+        className="site-layout-background"
+        style={{ padding: 24 }}
+      >
+        {parentdata===null
+        ?<center>Loading...</center>
+        :
+        <>
+          <h3>Name: {parentdata.name}</h3>
+          <h3>SKU: {parentdata.sku}</h3>
+          
+
+
+            <FindDynamicData redux_state='category' find='name' value='Men' get='url' />
+
+        
+          <br />
+          {childDatas && 
+            _.filter(childDatas,_.omitBy(childFilterDropdownSelected, _.isNil)).map((cd)=>{
+              return(
+                <p>{cd.name}</p>
+              )
+            })
+          }
+
+
+          <br />
+          <div >
+          <h5>Group</h5>
+          {childFilterDropdown.Group.map((cd,key)=>{
+            return(
+              <span key={key}>
+              &nbsp;
+              <Button size='small' type={childFilterDropdownSelected.Group===cd?`primary`:``} onClick={()=>handleChangeDropdown('Group',cd)}>{cd}</Button>
+              </span>
+            )
+          })}
+          </div>
+
+          <h5>Size</h5>
+          {childFilterDropdown.Size.map((cd,key)=>{
+            return(
+              <span key={key}>
+              &nbsp;
+              <Button size='small' type={childFilterDropdownSelected.Size===cd?`primary`:``} onClick={()=>handleChangeDropdown('Size',cd)}>{cd}</Button>
+              </span>
+            )
+          })}
+
+          <h5>Color</h5>
+          {childFilterDropdown.Color.map((cd,key)=>{
+            return(
+              <span key={key}>
+              &nbsp;
+              <Button size='small' type={childFilterDropdownSelected.Color===cd?`primary`:``} onClick={()=>handleChangeDropdown('Color',cd)}>{cd}</Button>
+              </span>
+            )
+          })}
+          
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+          
+
+
+
+
+
+          
+
+
+          <hr />
+
+
+          
+
+
+      
+
+
+          <Form>
+            <Form.Group >
+
+
+
+            {Object.entries(childFilterDropdown).map((data,num)=>{
+              if(num===0){
+                return(
+                  // _.filter(childDatas,_.omitBy(childFilterDropdownSelected, _.isNil))
+                  <Form.Field label={data[0]} key={num} datakey={num} name={data[0]} control='select' 
+                         onChange={handleChangeDropdown}
+                    >
+                        <option value={''}>Select {data[0]}</option>
+                        {/* {childFilterDropdown[data[0]].map((dd)=>{ */}
+
+                        {_.uniq(_.map(childDatas, data[0])).map((dd)=>{
+                            return(
+                              <option value={dd} key={dd}>{dd}</option>
+                            )
+                        })}
+                  </Form.Field>
+                )
+              }else{
+                return(
+                  // _.filter(childDatas,_.omitBy(childFilterDropdownSelected, _.isNil))
+                  <Form.Field label={data[0]} key={num} datakey={num} name={data[0]} control='select' 
+                         onChange={handleChangeDropdown}
+                    >
+                        <option value={''}>Select {data[0]}</option>
+                        {_.uniq(_.map(_.filter(childDatas,_.omitBy(childFilterDropdownSelected, _.isNil)), data[0])).map((dd)=>{
+                            return(
+                              <option value={dd} key={dd}>{dd}</option>
+                            )
+                        })}
+                  </Form.Field>
+                )
+              }
+
+              
+            })}
+
+
+
+              {Object.entries(childFilterDropdown).map((data,num)=>{
+                
+                if(num===0){ //** 1st item wll never disabled
+                  return(
+                    <Form.Field label={data[0]} key={num} datakey={num} name={data[0]} control='select' 
+                       onChange={handleChangeDropdown}
+                    >
+                      <option value=''>Select {data[0]}</option>
+                      {data[1].map((dd)=>{
+                          return(
+                            <option value={dd} key={dd}>{dd}</option>
+                          )
+                      })}
+                    </Form.Field>
+                  )
+                }else{
+                  return(
+                    <Form.Field label={data[0]} key={num} datakey={num} name={data[0]} control='select' 
+                      // disabled={childFilterDropdownSelected[data[0]]===''?true:false} 
+                      disabled={data[1].length===0?true:false} 
+
+                      onChange={handleChangeDropdown}
+                    >
+                      <option value=''>Select {data[0]}</option>
+                      {data[1].map((dd)=>{
+                          return(
+                            <option value={dd} key={dd}>{dd}</option>
+                          )
+                      })}
+                    </Form.Field>
+                  )
+                }
+              })}
+            </Form.Group>
+          </Form>
+
+
+        </>
+        }
+      </div>
+        
+        {/* }*/}
+
+        
+      </Content>
+    </Body>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  dynamic_datas:state.dynamic_datas
+})
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(index);
