@@ -226,8 +226,8 @@ export class MainBody extends Component {
                 mode="inline">
                   <center>
                     <img
-                      src="https://wieldy.g-axon.work/assets/images/logo.png"
-                      style={{ padding: "21px 0px" }}
+                      src="https://i.ibb.co/4RGDdZ5/logo.png"
+                      style={{ padding: "19px 0px", width:'178px' }}
                     />
                   </center>
                   {/* <Menu.Item key="/webtypesearch" icon={<PieChartOutlined />}>

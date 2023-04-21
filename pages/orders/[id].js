@@ -403,7 +403,7 @@ export const View = (props) => {
                     
 
                     <Grid>
-                        <Grid.Column mobile={16} tablet={16} computer={8}>
+                        {/* <Grid.Column mobile={16} tablet={16} computer={8}>
                         <div className="site-layout-background" style={{ padding: 24 }}>
                             <h3 className='text-primary'>Send Message</h3>
                             <Comment.Group>
@@ -441,7 +441,7 @@ export const View = (props) => {
                         </Comment.Group>
 
                         </div>
-                        </Grid.Column>
+                        </Grid.Column> */}
                         <Grid.Column mobile={16} tablet={16} computer={8}>
                             <div className="site-layout-background" style={{ padding: 24 }}>
                             <h3 className='text-primary'>Timeline</h3>

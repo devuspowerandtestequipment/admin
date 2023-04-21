@@ -109,14 +109,12 @@ export const index = (props) => {
           <Grid verticalAlign='middle' >
             <Grid.Column mobile={16} tablet={16} computer={16}>
               <Grid>
-                <Grid.Column mobile={16} tablet={16} computer={2}>
-                  <img src='https://www.spruko.com/demo/flaira/Flaira/assets/images/svgs/email.svg'  />
-                </Grid.Column>
+                
                 <Grid.Column mobile={16} tablet={16} computer={14}>
                   <p>
-                    {greeting} <b>Biswanath Prasad Singh</b>
+                    {greeting} <b>{props.auth && props.auth.name}</b>
                   </p>
-                  <small>Want to be the first to know about Flaira updates? Subscribe Now</small>
+                  {/* <small>Want to be the first to know about Flaira updates? Subscribe Now</small> */}
                 </Grid.Column>
               </Grid>
             </Grid.Column>
@@ -237,6 +235,7 @@ export const index = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+  auth:state.auth
 });
 
 export default connect(mapStateToProps)(index);

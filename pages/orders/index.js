@@ -330,7 +330,7 @@ export class index extends Component {
         render: (aa, data) => (
           <>
             
-            {data.payment_status==='paid'
+            {data.payment_status==='Paid'
             ?<Tag color="#87d068">Paid</Tag>
             :<Tag color="#f50">Unpaid</Tag>
             }
