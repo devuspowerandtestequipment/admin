@@ -92,8 +92,9 @@ export const index = (props) => {
 
     })
 
+  },[])
     
-  },[props])
+  // },[props])
   
 
 
@@ -109,7 +110,9 @@ export const index = (props) => {
           <Grid verticalAlign='middle' >
             <Grid.Column mobile={16} tablet={16} computer={16}>
               <Grid>
-                
+                {/* <Grid.Column mobile={16} tablet={16} computer={2}>
+                  <img src='https://www.spruko.com/demo/flaira/Flaira/assets/images/svgs/email.svg'  />
+                </Grid.Column> */}
                 <Grid.Column mobile={16} tablet={16} computer={14}>
                   <p>
                     {greeting} <b>{props.auth && props.auth.name}</b>
@@ -123,7 +126,9 @@ export const index = (props) => {
         <br />
         <br />
 
-
+        {/* ====ROLE CHECK==== */}
+        {props.auth && props.auth.admin_role.is_view_dashboard &&
+        <>
         <div className="dashboard2" style={{ padding: 24 }}>
           <Grid verticalAlign='middle' columns='equal' stackable>
             
@@ -225,6 +230,9 @@ export const index = (props) => {
             </Grid>
           </div>
         }
+        </>
+        }
+        
         
 
         

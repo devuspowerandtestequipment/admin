@@ -209,26 +209,17 @@ export class MainBody extends Component {
                 top: 0,
                 bottom: 0,
               }}
-              >
-                {/* <div className="logo">
-                  <center>
-                    <img
-                      src="https://wieldy.g-axon.work/assets/images/logo.png"
-                      style={{ padding: "21px 0px" }}
-                    />
-                  </center>
-                </div> */}
-                
+              > 
                 <Menu theme="dark"
                 selectedKeys={active_link}
                 // defaultSelectedKeys={['1']} 
                 // defaultOpenKeys={[active_openkey]}
                 mode="inline">
                   <center>
-                    <img
+                    {/* <img
                       src="https://i.ibb.co/4RGDdZ5/logo.png"
                       style={{ padding: "19px 0px", width:'178px' }}
-                    />
+                    /> */}
                   </center>
                   {/* <Menu.Item key="/webtypesearch" icon={<PieChartOutlined />}>
                     <Link href='/webtypesearch'>
@@ -366,8 +357,8 @@ export class MainBody extends Component {
                     <Dropdown trigger={triggerUser} text='Menu' icon={null} >
                       <Dropdown.Menu className='left headertext98' style={{width:'230px'}}>
                           
-                        <p className="headertext98_head">Bob Smith</p>
-                        <p  className="headertext98_head_subhead1">Admin</p>
+                        {/* <p className="headertext98_head">Bob Smith</p>
+                        <p  className="headertext98_head_subhead1">Admin</p> */}
                         <Dropdown.Item className="headertext98_head_item1"><UserOutlined />&nbsp;&nbsp;Profile</Dropdown.Item>
                         <Dropdown.Item><EditOutlined />&nbsp;&nbsp;Account Settings</Dropdown.Item>
                         <Dropdown.Item><StockOutlined />&nbsp;&nbsp;Activity</Dropdown.Item>

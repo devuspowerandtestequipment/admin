@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import cookie from 'react-cookies'
 import { connect } from 'react-redux'
-import {fetchDynamicDatas,fetchNotifications,fetchCartItems,fetchUsers,fetchOrders,fetchAllReviews,fetchAllLastVisitedProducts,fetchAllPaymentHistory} from '../../store/actions'
+import {fetchDynamicDatas,fetchNotifications,fetchCartItems,fetchUsers,fetchOrders,fetchAllReviews,fetchAllLastVisitedProducts,fetchAllPaymentHistory,fetchAllRoles,fetchAuthUser} from '../../store/actions'
 import Head from 'next/head'
 import ls from 'localstorage-slim';
 import * as ACTION  from '../../store/types'
@@ -25,6 +25,13 @@ export const Body = (props) => {
     props.fetchAllReviews();
     props.fetchAllLastVisitedProducts();
     props.fetchAllPaymentHistory();
+    props.fetchAllRoles();
+    
+    if(props.auth){
+      props.fetchAuthUser(props.auth._id)
+    }
+
+
   },[])
 
 
@@ -81,4 +88,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {fetchDynamicDatas,fetchNotifications,fetchCartItems,fetchUsers,fetchOrders, fetchAllReviews,fetchAllLastVisitedProducts,fetchAllPaymentHistory})(Body)
+export default connect(mapStateToProps, {fetchDynamicDatas,fetchNotifications,fetchCartItems,fetchUsers,fetchOrders, fetchAllReviews,fetchAllLastVisitedProducts,fetchAllPaymentHistory,fetchAllRoles,fetchAuthUser})(Body)

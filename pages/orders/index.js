@@ -330,7 +330,7 @@ export class index extends Component {
         render: (aa, data) => (
           <>
             
-            {data.payment_status==='Paid'
+            {data.payment_status==='paid'
             ?<Tag color="#87d068">Paid</Tag>
             :<Tag color="#f50">Unpaid</Tag>
             }
@@ -376,11 +376,11 @@ export class index extends Component {
         width: "104px",
 
         render: (data) => (
-          <>
-            <a href={`/orders/${data._id}`}  target="_blank" rel="noopener"><Button type="primary" icon={<EyeOutlined />}>View</Button></a>
+          this.props.auth && this.props.auth.admin_role && //<===Order view role check
+            this.props.auth.admin_role.order_record_view &&
+              <a href={`/orders/${data._id}`}  target="_blank" rel="noopener"><Button type="primary" icon={<EyeOutlined />}>View</Button></a>
             
          
-          </>
         ),
       },
     ];
@@ -434,16 +434,17 @@ export class index extends Component {
       </Row>
           </PageHeader>
           <br />
-
-          <Table
-            columns={columns}
-            rowClassName={record=>record.isAdminSeen?'':'activetabletr'}
-
-            dataSource={this.props.orders}
-            pagination={{ pageSize: 10 }}
-            loading={this.state.tableLoading}
-            scroll={{ x: 500 }}
-          />
+          {this.props.auth && this.props.auth.admin_role && //<===Order list role check
+            this.props.auth.admin_role.order_record_index &&
+              <Table
+                columns={columns}
+                rowClassName={record=>record.isAdminSeen?'':'activetabletr'}
+                dataSource={this.props.orders}
+                pagination={{ pageSize: 10 }}
+                loading={this.state.tableLoading}
+                scroll={{ x: 500 }}
+              />
+          }
         </Content>
       </Body>
     );
@@ -452,6 +453,7 @@ export class index extends Component {
 
 const mapStateToProps = (state) => ({
   orders: state.all_orders,
+  auth:state.auth
 });
 
 export default connect(mapStateToProps, { fetchOrders,clearSingleNotificationByMessage })(index);

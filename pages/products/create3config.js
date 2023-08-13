@@ -816,8 +816,8 @@ export class create3config extends Component {
           // console.log(file)
         
           if(file.type==='image/jpg' || file.type==='image/jpeg' || file.type==='image/png' || file.type==='image/webp'){
-            if (file.size >= 15728640){
-              message.warning(`${file.path} size is more than 15mb.`)
+            if (file.size >= 5242880){
+              message.warning(`${file.path} size is more than 5mb.`)
 
             }else{
               totalfiles.push(file); 
@@ -910,8 +910,8 @@ export class create3config extends Component {
           // console.log(file)
         
           if(file.type==='image/jpg' || file.type==='image/jpeg' || file.type==='image/png' || file.type==='image/webp'){
-            if (file.size >= 15728640){
-              message.warning(`${file.path} size is more than 15mb.`)
+            if (file.size >= 5242880){
+              message.warning(`${file.path} size is more than 5mb.`)
 
             }else{
               totalfiles.push(file); 
@@ -1084,7 +1084,6 @@ export class create3config extends Component {
             // ]}
           >
           </PageHeader>
-        <a href='#block_review' id='btn-block_review'>xxxx</a>
 
           <br />
           <div >
@@ -1149,8 +1148,6 @@ export class create3config extends Component {
                   </Form.Group>
                 </div> */}
 
-
-              <br />
 
               <div className={this.state.savingDivAttrProducts?`site-layout-background stoppointerevents`:`site-layout-background`} style={{ padding: 24 }}>
                 {this.state.savingDivAttrProducts
@@ -1689,9 +1686,12 @@ export class create3config extends Component {
                   <p>{this.state.data.meta_desc}</p>
                   <h5>{this.state.data.meta_key}</h5>
                 </div>
-                <br/>
-                <ProductReview product_id={this.state.data._id} />
               </div>
+
+              <br />
+
+              
+              <ProductReview product_id={this.state.data._id} />
               </>
               }
               </div>
@@ -1756,7 +1756,7 @@ export class create3config extends Component {
                         <option value="Special Offer">Special Offer</option>
                         <option value="Trending">Trending</option>
                         <option value="Most Popular">Most Popular</option>
-                        <option value="Most Popular">Featured products</option>
+                        <option value="Featured Products">Featured Products</option>
                         <option value="Todays Deals">Todays Deals</option>
                       </Form.Field>
                     </div>

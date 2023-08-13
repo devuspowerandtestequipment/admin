@@ -65,17 +65,20 @@ export const View = (props) => {
                         data.user_id && <Link href={`/users/${data.user_id._id}`}><Button type='primary' icon={<EyeOutlined />}>View User</Button></Link>
                     }
                     </>,
-                    <Popconfirm
-                        placement="topRight"
-                        title="Are you sure?"
-                        // description="Are you sure to delete this task?"
-                        onConfirm={()=>handleDelete(data._id)}
-                        // onCancel={cancel}
-                        okText="Yes"
-                        cancelText="No"
-                    >
-                        <Button type='primary' danger icon={<DeleteOutlined />}>Delete</Button>
-                    </Popconfirm>]}
+                    props.auth && props.auth.admin_role && //<===Emailrecord delete role check
+                        props.auth.admin_role.email_record_delete &&
+                            <Popconfirm
+                                placement="topRight"
+                                title="Are you sure?"
+                                // description="Are you sure to delete this task?"
+                                onConfirm={()=>handleDelete(data._id)}
+                                // onCancel={cancel}
+                                okText="Yes"
+                                cancelText="No"
+                            >
+                                <Button type='primary' danger icon={<DeleteOutlined />}>Delete</Button>
+                            </Popconfirm>
+                    ]}
                 >
                 </PageHeader>
                 <br />

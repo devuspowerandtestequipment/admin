@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Body from "../components/Body";
+import Body from "./components/Body";
 import {
   Layout,
   Row,
   Statistic,
   Col,
-  Breadcrumb ,
+  Switch ,
   PageHeader,
   Popconfirm,
   message,
-  Tag,
+  Breadcrumb,
   Table,
   Input,
   Button,
@@ -22,21 +22,21 @@ import {
   EyeOutlined,
   EditOutlined,
   DeleteOutlined,
-  PlusOutlined,
 } from "@ant-design/icons";
-import ShippingEditDrawer from "../components/shipping/ShippingEditDrawer";
+import ShippingEditDrawer from "./components/shipping/ShippingEditDrawer";
 import Link from "next/link";
-import { fetchBlogs } from "../../store/actions";
+import { fetchShipping, fetchCategories, fetchSubCategories, fetchChildCategories, fetchShippingRules } from "../store/actions";
 import Moment from "react-moment";
 import axios from "axios";
 import _ from 'lodash'
-import ShippingCreateDrawer from "../components/shipping/ShippingCreateDrawer";
-import CourierCreateDrawer from "../components/courier/CourierCreateDrawer";
-import CourierEditDrawer from "../components/courier/CourierEditDrawer";
+import ShippingruleCreateDrawer from "./components/shippingrule/ShippingruleCreateDrawer";
 import Head from "next/head";
+import ShippingruleEditDrawer from "./components/shippingrule/ShippingruleEditDrawer";
+
+
 const { Header, Content, Footer, Sider } = Layout;
 
-export class Blog extends Component {
+export class ShippingRule extends Component {
   state = {
     searchText: "",
     searchedColumn: "",
@@ -44,7 +44,11 @@ export class Blog extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchBlogs();
+    this.props.fetchShipping();
+    this.props.fetchCategories();
+    this.props.fetchSubCategories();
+    this.props.fetchChildCategories();
+    this.props.fetchShippingRules();
   }
 
   getColumnSearchProps = (dataIndex) => ({
@@ -146,10 +150,10 @@ export class Blog extends Component {
   handleDelete = (id) => {
     this.setState({ tableLoading: true });
     axios
-      .get(`${process.env.backendURL}/blog/deletefile/${id}`)
+      .get(`${process.env.backendURL}/shippingrule/deletefile/${id}`)
       .then((response) => {
         if (response.data.response) {
-          this.props.fetchBlogs();
+          this.props.fetchShippingRules();
           this.setState({ tableLoading: false });
           message.success("Success");
         }
@@ -165,23 +169,35 @@ export class Blog extends Component {
       //   key: "name",
       //   ...this.getColumnSearchProps("name"),
       // },
+
       {
-        title: "Image",
-        dataIndex: "_id",
-        key: "_id",
-        width: "120px",
-        render: (aa, data) => (
-          <img
-            src={`${process.env.imagekiturl}${data.image.filePath}?tr=w-80,h-80,q=10`}
-          />
-        ),
+        title: "Name",
+        dataIndex: "name",
+        key: "name",
+        ...this.getColumnSearchProps("name"),
       },
-      {
-        title: "Title",
-        dataIndex: "title",
-        key: "title",
-        ...this.getColumnSearchProps("title"),
-      },
+      // {
+      //   title: "Shipping Time",
+      //   dataIndex: "time",
+      //   key: "time",
+      //   ...this.getColumnSearchProps("time"),
+      // },
+
+      // {
+      //   title: "Percentage",
+      //   dataIndex: "percentage",
+      //   key: "percentage",
+      //   ...this.getColumnSearchProps("percentage"),
+      // },
+      // {
+      //   title: "Amount",
+      //   dataIndex: "amount",
+      //   key: "amount",
+      //   render: (data) => (
+      //     <>{data.amount}</>
+      //   ),
+      //   ...this.getColumnSearchProps("amount"),
+      // },
       {
         title: "Created",
         dataIndex: "createdAt",
@@ -189,7 +205,7 @@ export class Blog extends Component {
         width: "250px",
         responsive: ["lg"],
         render: (createdAt) => (
-          <Moment format="llll">{createdAt}</Moment>
+          <Moment format="LLL">{createdAt}</Moment>
         ),
       },
       {
@@ -200,10 +216,12 @@ export class Blog extends Component {
 
         render: (data) => (
           <>
-            <Link href={`/blogs/${data._id}`}><Button type="primary" icon={<EditOutlined />}>Edit</Button></Link>
+            {/* <ShippingEditDrawer data={data} /> */}
+            {/* <ShippingEditDrawer shippingdata={data} /> */}
+            <ShippingruleEditDrawer shippingdata={data} />
             &nbsp;
             <Popconfirm
-              title="Are you sure?"
+              title="Are you sure to delete this category?"
               onConfirm={() => this.handleDelete(data._id)}
               okText="Yes"
               cancelText="No"
@@ -219,26 +237,29 @@ export class Blog extends Component {
 
     return (
       <Body>
-        <Head>
-        <title>Blogs</title>
-        </Head>
+        <Head><title>Shipping Rule</title></Head>
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item><Link href='/'>Dashboard</Link></Breadcrumb.Item>
-            <Breadcrumb.Item>Blogs</Breadcrumb.Item>
+            <Breadcrumb.Item>Shipping Rules</Breadcrumb.Item>
           </Breadcrumb>
-        
           <PageHeader
-            title="All Blog"
-            onBack={() => window.history.back()}
             ghost={false}
             className="site-page-header-gray"
-            extra={[<Link href='/blogs/create'><Button type="primary" icon={<PlusOutlined />}>Create Blog</Button></Link>]}
+            title="Shipping Rules"
+            onBack={() => window.history.back()}
+            extra={[<ShippingruleCreateDrawer />]}
           >
             <Row>
-                <Col xs={24} sm={24} md={4} lg={2} xl={2}>
-                  <Statistic title="Total Blogs" value={this.props.datas.length} />
+                <Col xs={24} sm={24} md={4} lg={3} xl={3}>
+                <Statistic title="Total Shipping Rules" value={this.props.datas.length} />
                 </Col>
+                {/* <Col xs={24} sm={24} md={4} lg={3} xl={3}>
+                <Statistic title="Active Tax" value={_.filter(this.props.datas, function(o) { if (o.status === 'Active') return o }).length} />
+                </Col>
+                <Col xs={24} sm={24} md={4} lg={3} xl={3}>
+                <Statistic title="Inactive Tax" value={_.filter(this.props.datas, function(o) { if (o.status === 'InActive') return o }).length} />
+                </Col> */}
             </Row>
           </PageHeader>
           <br />
@@ -256,7 +277,7 @@ export class Blog extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  datas: state.all_blogs,
+  datas: state.all_shippingrules,
 });
 
-export default connect(mapStateToProps, { fetchBlogs })(Blog);
+export default connect(mapStateToProps, { fetchShipping, fetchCategories, fetchSubCategories, fetchChildCategories, fetchShippingRules })(ShippingRule);

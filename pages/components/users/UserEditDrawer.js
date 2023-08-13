@@ -21,6 +21,7 @@ export const UserEditDrawer = (props) => {
         state:'',
         city:'',
         type:'',
+        admin_role:'',
         status:'',
         emailverification:'',
     })
@@ -64,6 +65,7 @@ export const UserEditDrawer = (props) => {
             state:props.data.state,
             city:props.data.city,
             type:props.data.type,
+            admin_role:props.data.admin_role?props.data.admin_role._id:'',
             status:props.data.status,
             emailverification:props.data.emailverification
         })
@@ -120,7 +122,7 @@ export const UserEditDrawer = (props) => {
 
     const handleSubmit =e=> {
         setFormloading(true);
-        axios.put(`${process.env.backendURL}/user/${data._id}`,data)
+        axios.put(`${process.env.backendURL}/user/updateaccountinfobyadmin/${data._id}`,data)
         .then(response=>{
         if(response.data.response){
             setVisible(false);
@@ -147,9 +149,9 @@ export const UserEditDrawer = (props) => {
         >
             <Form onSubmit={handleSubmit} loading={formloading}>
             <Form.Input fluid label="Name" name='name' value={data.name} onChange={handleChange} placeholder="Name" required/>
-            <Form.Input fluid label="Phone" name='phone' value={data.phone} onChange={handleChange} placeholder="Phone"  />
+            <Form.Input fluid label="Phone" name='phone' value={data.phone} onChange={handleChange} placeholder="Phone"  required/>
             <Form.Field label='Country' control='select' name='country' value={data.country} onChange={e=>handleChangeCountry(e)} >
-                <option>Choose country</option>
+                <option value=''>Choose country</option>
                 {countries.map((co)=>{
                     return(
                         <option value={co.name} key={co.name}>{co.name}</option>
@@ -161,7 +163,7 @@ export const UserEditDrawer = (props) => {
                 ?<></>
                 :
                 <>
-                <option>Choose State</option>
+                <option value=''>Choose State</option>
                 {states.map((co)=>{
                     return(
                         <option value={co.name} key={co.name}>{co.name}</option>
@@ -170,8 +172,9 @@ export const UserEditDrawer = (props) => {
                 </>
                 }
             </Form.Field>
+            <Form.Input fluid label="City" name='city' value={data.city} onChange={handleChange} placeholder="City" readonly={data.state?false:true}  />
 
-            <Form.Field label='City' control='select' name='city' value={data.city} onChange={handleChange} >
+            {/* <Form.Field label='City' control='select' name='city' value={data.city} onChange={handleChange} >
                 {cities.length===0
                 ?<></>
                 :
@@ -184,12 +187,37 @@ export const UserEditDrawer = (props) => {
                 })}
                 </>
                 }
+            </Form.Field> */}
+
+
+            <Form.Field label='Type' control='select' name='type' value={data.type} onChange={handleChange} >
+                <option value='Admin'>Admin</option>
+                <option value='User'>User</option>
             </Form.Field>
 
-            <div class="field required">
+
+            {data.type==='Admin' &&
+                <Form.Field label='Role' control='select' name='admin_role' value={data.admin_role} onChange={handleChange} required>
+                    <option value=''>Choose Role</option>
+                    {props.roles && 
+                        <>
+                        {props.roles.map((role)=>{
+                            return(
+                                <option value={role._id} key={role._id}>{role.name}</option>
+                            )
+                        })}
+                        </>
+                    }
+                    
+                </Form.Field>
+            }
+            
+
+
+            {/* <div class="field required">
                 <label>Type</label>
                 <Switch checkedChildren="Admin" unCheckedChildren="User" defaultChecked={data.type==='User'?false:true} onChange={(e)=>setData({...data,['type']:e})} />
-            </div>
+            </div> */}
             <div class="field required">
                 <label>Status</label>
                 <Switch checkedChildren="Active" unCheckedChildren="Inactive" defaultChecked={data.status} onChange={(e)=>setData({...data,['status']:e})} />
@@ -207,6 +235,8 @@ export const UserEditDrawer = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    roles:state.all_roles
+});
 
 export default connect(mapStateToProps, {fetchUsers})(UserEditDrawer);

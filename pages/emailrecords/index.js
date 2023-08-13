@@ -340,11 +340,11 @@ export class Emailrecords extends Component {
         dataIndex: "",
         key: "x",
         width: "224px",
-
         render: (data) => (
-          <>
-            <a href={`/emailrecords/${data._id}`}  target="_blank" rel="noopener"><Button type='primary' icon={<EyeOutlined />}>View</Button></a>
-          </>
+          this.props.auth && this.props.auth.admin_role && //<===Emailrecord view role check
+            this.props.auth.admin_role.email_record_view &&
+              <a href={`/emailrecords/${data._id}`}  target="_blank" rel="noopener"><Button type='primary' icon={<EyeOutlined />}>View</Button></a>
+          
         ),
       },
     ];
@@ -372,15 +372,18 @@ export class Emailrecords extends Component {
             </Row>
           </PageHeader>
           <br />
-          <Table
-            columns={columns}
-            dataSource={this.props.datas}
-            // pagination={{ pageSize: this.state.pageSize }}
-            loading={this.state.tableLoading}
-            scroll={{ x: 500 }}
-            onChange={(e)=>this.setState({pageSize:e.pageSize})}
-            pagination={{ pageSize: this.state.pageSize, pageSizeOptions: ['10', '20', '50', '100', '150', '200', '500'] }}
-          />
+          {this.props.auth && this.props.auth.admin_role && //<===Emailrecord list role check
+            this.props.auth.admin_role.email_record_index &&
+              <Table
+                columns={columns}
+                dataSource={this.props.datas}
+                loading={this.state.tableLoading}
+                scroll={{ x: 500 }}
+                onChange={(e)=>this.setState({pageSize:e.pageSize})}
+                pagination={{ pageSize: this.state.pageSize, pageSizeOptions: ['10', '20', '50', '100', '150', '200', '500'] }}
+              />
+          }
+          
         </Content>
       </Body>
     );
@@ -389,6 +392,7 @@ export class Emailrecords extends Component {
 
 const mapStateToProps = (state) => ({
   datas: state.all_emails,
+  auth:state.auth
 });
 
 export default connect(mapStateToProps, { fetchEmailRecords })(Emailrecords);

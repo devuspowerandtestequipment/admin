@@ -11,7 +11,7 @@ numeral.defaultFormat('0,0.00');
     console.log('Called')
   return (
     <>
-    ${number.format()}
+    ₹{number.format()}
 {/* xxxxxxx */}
     {/* <CurrencyConverter from={'USD'} to={'INR'} value={2}/> */}
 

@@ -20,9 +20,13 @@ export const BrandEditDrawer = (props) => {
     name: "",
     url: "",
     status: "Active",
+    showin_homepage: "No",
     image: "",
     image_temp: "",
     image_id: "",
+    meta_title: "",
+    meta_desc: "",
+    meta_key: "",
 
   });
 
@@ -36,6 +40,12 @@ export const BrandEditDrawer = (props) => {
         image: "",
         image_temp: process.env.imagekiturl+props.data.image,
         image_id: props.data.image_id,
+        showin_homepage: props.data.showin_homepage,
+
+        meta_title: props.data.meta_title,
+        meta_desc: props.data.meta_desc,
+        meta_key: props.data.meta_key,
+
     })
   },[props])
 
@@ -97,7 +107,13 @@ export const BrandEditDrawer = (props) => {
       formData.append('url',branddata.url);   
       formData.append('status',branddata.status);   
       formData.append('image',branddata.image);
-      formData.append('image_id',branddata.image_id);   
+      formData.append('image_id',branddata.image_id); 
+      
+      formData.append('meta_title',branddata.meta_title);
+      formData.append('meta_desc',branddata.meta_desc);
+      formData.append('meta_key',branddata.meta_key);
+      formData.append('showin_homepage',branddata.showin_homepage);
+
 
 
       axios.post(`${process.env.backendURL}/brand/update`,formData,config)
@@ -129,14 +145,9 @@ export const BrandEditDrawer = (props) => {
             name="name"
             value={branddata.name}
             onChange={handleUpdate}
+            required
           />
-          <span className="myerrormessage">
-            {simpleValidator.current.message(
-              "name",
-              branddata.name,
-              "required|min:2|max:20"
-            )}
-          </span>
+         
           <Form.Input
             fluid
             label="URL"
@@ -144,31 +155,60 @@ export const BrandEditDrawer = (props) => {
             name="url"
             value={branddata.url}
             onChange={handleUpdate}
+            required
           />
-          <span className="myerrormessage">
-            {simpleValidator.current.message(
-              "url",
-              branddata.url,
-              "required|min:4|max:20"
-            )}
-          </span>
+          
           <Form.Field
             label="Status"
             control="select"
             name="status"
             value={branddata.status}
             onChange={handleUpdate}
+            required
           >
             <option value="Active">Active</option>
             <option value="InActive">InActive</option>
           </Form.Field>
-          <span className="myerrormessage">
-            {simpleValidator.current.message(
-              "status",
-              branddata.status,
-              "required"
-            )}
-          </span>
+
+          <Form.Field
+            label="Show in home"
+            control="select"
+            name="showin_homepage"
+            value={branddata.showin_homepage}
+            onChange={handleUpdate}
+            required
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </Form.Field>
+          
+
+          <Form.Input
+            fluid
+            label="Meta Title"
+            placeholder="Meta Title"
+            name="meta_title"
+            value={branddata.meta_title}
+            onChange={handleUpdate}
+            required
+          />
+          
+          <Form.TextArea label='Meta Description' placeholder='Meta Description'
+          
+          name="meta_desc"
+            value={branddata.meta_desc}
+            onChange={handleUpdate}
+            required
+          />
+
+          <Form.TextArea label='Meta Keywords' placeholder='Meta Keywords'
+          
+          name="meta_key"
+            value={branddata.meta_key}
+            onChange={handleUpdate}
+            required
+          />
+
           <div className="field">
             <label>Brand Image</label>
             {branddata.image_temp === "" ? (

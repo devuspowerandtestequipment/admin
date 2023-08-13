@@ -19,7 +19,7 @@ class MyApp extends App {
     const {Component,pageProps} = this.props;
     return(
       <Provider store={store}>
-          <NextNProgress color="#fe696a" />
+          <NextNProgress color="#1890ff" />
           <MainBody>
             <Component {...pageProps}></Component>
           </MainBody>

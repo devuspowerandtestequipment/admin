@@ -38,11 +38,11 @@ export const login = (props) => {
       })
     })
 
-    if(ls.get(ACTION.AUTH_USER_INFORMATION)===undefined || ls.get(ACTION.AUTH_USER_INFORMATION)===null){
+    // if(ls.get(ACTION.AUTH_USER_INFORMATION)===undefined || ls.get(ACTION.AUTH_USER_INFORMATION)===null){
       setLoading(false)
-    }else{
-      router.push('/')
-    }
+    // }else{
+    //   router.push('/')
+    // }
 
 
   },[props])

@@ -306,39 +306,21 @@ export class index extends Component {
         ),
         ...this.getColumnSearchPropsDateFilterCustom('createdAt')
       },
-      // {
-      //   title: "Type",
-      //   dataIndex: "type",
-      //   key: "type",
-      //   ...this.getColumnSearchProps("type"),
-       
-      // },
       {
         title: '',
         dataIndex: '',
         key: 'x',
 
         render: data => (
-          <>
-            <Space warp>
-              <Link href='/users/view'>
-                <Tooltip title='View user information'>
-                  <Link href={`/users/${data._id}`}><Button type="primary" icon={<EyeOutlined />}>View</Button></Link>
-                </Tooltip>
-              </Link>
-              
-              
-              {/* <Tooltip title='Edit user information'>
-                <Button type="primary" icon={<EditOutlined />}></Button>
-              </Tooltip>
-              
-              <Tooltip title='Delete user information'>
-              <Button type="danger" icon={<DeleteOutlined />}></Button>
-              </Tooltip> */}
-            </Space>
-            
-
-          </>
+          this.props.auth && this.props.auth.admin_role && //<===User view role check
+            this.props.auth.admin_role.user_view &&
+              <Space warp>
+                <Link href='/users/view'>
+                  <Tooltip title='View user information'>
+                    <Link href={`/users/${data._id}`}><Button type="primary" icon={<EyeOutlined />}>View</Button></Link>
+                  </Tooltip>
+                </Link>
+              </Space>
         ),
       },
     ];
@@ -358,7 +340,11 @@ export class index extends Component {
             ghost={false}
             className="site-page-header-gray"
             extra={[
-              <UserCreateDrawer />,
+
+              this.props.auth && this.props.auth.admin_role && //<===User create role check
+                this.props.auth.admin_role.user_create &&
+                  <UserCreateDrawer />,
+
               <>
               {_.filter(this.props.datas, function(o) { if (o.isAdminSeen === false) return o }).length>0 &&
                 <Button type="primary" icon={<EyeOutlined />} onClick={()=>this.markAllasRead()}>
@@ -366,7 +352,6 @@ export class index extends Component {
                 </Button>
               }
               </>
-              
             ]}
           >
             <Row>
@@ -384,16 +369,23 @@ export class index extends Component {
                 </Col>
             </Row>
           </PageHeader>
-
-       
-
           <br />
-          <Table
-            rowClassName={record=>record.isAdminSeen?'':'activetabletr'}
-            columns={columns}
-            dataSource={this.props.datas}
-            pagination={{ pageSize: 15 }}
-          />
+          {/* ====ROLE CHECK==== */}
+            {/* <Table
+              rowClassName={record=>record.isAdminSeen?'':'activetabletr'}
+              columns={columns}
+              dataSource={this.props.datas}
+              pagination={{ pageSize: 15 }}
+            /> */}
+          {this.props.auth && this.props.auth.admin_role && //<===User list role check
+            this.props.auth.admin_role.user_index &&
+            <Table
+              rowClassName={record=>record.isAdminSeen?'':'activetabletr'}
+              columns={columns}
+              dataSource={this.props.datas}
+              pagination={{ pageSize: 15 }}
+            />
+          }
         </Content>
       </Body>
     );
@@ -401,7 +393,8 @@ export class index extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  datas:state.all_users
+  datas:state.all_users,
+  auth:state.auth
 });
 
 

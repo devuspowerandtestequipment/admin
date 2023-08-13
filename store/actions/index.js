@@ -40,6 +40,13 @@ export const fetchDynamicDatas = () => async dispatch => {
 }
 
 
+//FETCH DYNAMIC DATAS
+export const fetchAuthUser = (user_id) => async dispatch => {
+    const response = await axios.get(`${process.env.backendURL}/user/fetch_auth_user_admin/${user_id}`);
+    ls.set(ACTION.AUTH_USER_INFORMATION, response.data.data, { ttl: 86400*365*10 }); //10 years data save
+    dispatch({type:'SET_USER_INFORMATION', payload:response.data.data})
+}
+
 //SET AUTH USER
 export const setAuthUser = (data) => async dispatch => {
     if(data===null){
@@ -114,6 +121,12 @@ export const fetchShipping = () => async dispatch => {
     dispatch({type:'GET_ALL_SHIPPING', payload:response.data.datas})
 }
 
+//FETCH ALL SHIPPING
+export const fetchShippingRules = () => async dispatch => {
+    const response = await axios.get(`${process.env.backendURL}/shippingrule`);
+    // cookie.save('all_subcategories_999', response.data.datas)
+    dispatch({type:'GET_ALL_SHIPPING_RULE', payload:response.data.datas})
+}
 
 //FETCH ALL PRODUCTS
 export const fetchProducts = () => async dispatch => {
@@ -199,4 +212,16 @@ export const fetchAllLastVisitedProducts = () => async dispatch => {
 export const fetchAllPaymentHistory = () => async dispatch => {
     const response = await axios.get(`${process.env.backendURL}/order/admin_all_paymenthistory`);
     dispatch({type:'GET_ALL_PAYMENT_HISTORY', payload:response.data.datas})
+}
+
+//FETCH ALL CURRENCY
+export const fetchAllCurrency = () => async dispatch => {
+    const response = await axios.get(`${process.env.backendURL}/currency`);
+    dispatch({type:'SET_CURRENCY_LIST', payload:response.data.datas})
+}
+
+//FETCH ALL ROLES
+export const fetchAllRoles = () => async dispatch => {
+    const response = await axios.get(`${process.env.backendURL}/rolesadmin`);
+    dispatch({type:'GET_ALL_ROLES', payload:response.data.datas})
 }

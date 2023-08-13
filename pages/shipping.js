@@ -25,7 +25,7 @@ import {
 } from "@ant-design/icons";
 import ShippingEditDrawer from "./components/shipping/ShippingEditDrawer";
 import Link from "next/link";
-import { fetchShipping } from "../store/actions";
+import { fetchShipping,fetchCategories,fetchSubCategories,fetchProducts,fetchUsers } from "../store/actions";
 import Moment from "react-moment";
 import axios from "axios";
 import _ from 'lodash'
@@ -35,6 +35,7 @@ import Head from "next/head";
 const { Header, Content, Footer, Sider } = Layout;
 
 export class tax extends Component {
+  
   state = {
     searchText: "",
     searchedColumn: "",
@@ -43,6 +44,10 @@ export class tax extends Component {
 
   componentDidMount() {
     this.props.fetchShipping();
+    this.props.fetchCategories();
+    this.props.fetchSubCategories();
+    this.props.fetchProducts();
+    this.props.fetchUsers();
   }
 
   getColumnSearchProps = (dataIndex) => ({
@@ -154,22 +159,52 @@ export class tax extends Component {
       });
   };
 
+  handleSwitchChange=(checked,id)=>{
+    console.log(checked);
+    console.log(id);
+    axios.get(`${process.env.backendURL}/shipping/updatestatus/${id}/${checked?'Active':'InActive'}`)
+    .then(response=>{
+      if(response.data.response){
+        message.success('Success');
+        this.props.fetchShipping();
+      }
+    })
+  }
+
 
   render() {
     const columns = [
-      // {
-      //   title: "Name",
-      //   dataIndex: "name",
-      //   key: "name",
-      //   ...this.getColumnSearchProps("name"),
-      // },
-
+      {
+        title: "Title",
+        dataIndex: "title",
+        key: "title",
+        ...this.getColumnSearchProps("title"),
+      },
       {
         title: "Name",
-        dataIndex: "",
-        key: "1",
-        render: (data) => (
-          <>{data.name} <br/> ({data.desc})</>
+        dataIndex: "name",
+        key: "name",
+        ...this.getColumnSearchProps("name"),
+      },
+      {
+        title: "Status",
+        key: "status",
+        dataIndex: "status",
+        filters: [
+          {
+            text: 'Active',
+            value: true,
+          },
+          {
+            text: 'Inactive',
+            value: false,
+          },
+        ],
+        onFilter: (value, record) => record.status.indexOf(value) === 0,
+        render: (aa, data) => (
+          <>
+            <Switch checkedChildren="Active" unCheckedChildren="InActive" checked={data.status} onChange={(sss)=>this.handleSwitchChange(sss,data._id)} />
+          </>
         ),
       },
       {
@@ -178,7 +213,6 @@ export class tax extends Component {
         key: "time",
         ...this.getColumnSearchProps("time"),
       },
-
       {
         title: "Percentage",
         dataIndex: "percentage",
@@ -194,30 +228,6 @@ export class tax extends Component {
         ),
         ...this.getColumnSearchProps("amount"),
       },
-      // {
-      //   title: "Status",
-      //   key: "status",
-      //   dataIndex: "status",
-      //   filters: [
-      //     {
-      //       text: 'Active',
-      //       value: 'Active',
-      //     },
-      //     {
-      //       text: 'InActive',
-      //       value: 'InActive',
-      //     },
-      //   ],
-      //   onFilter: (value, record) => record.status.indexOf(value) === 0,
-      //   render: (aa, data) => (
-      //     <>
-      //       {data.status==='Active'
-      //         ?<Tag color="#87d068">Active</Tag>
-      //         :<Tag color="#f50">InActive</Tag>
-      //         }
-      //     </>
-      //   ),
-      // },
       {
         title: "Created",
         dataIndex: "createdAt",
@@ -233,7 +243,6 @@ export class tax extends Component {
         dataIndex: "",
         key: "x",
         width: "224px",
-
         render: (data) => (
           <>
             <ShippingEditDrawer data={data} />
@@ -270,14 +279,8 @@ export class tax extends Component {
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>
-                <Statistic title="Total Shipping" value={this.props.datas.length} />
+                  <Statistic title="Total Shipping" value={this.props.datas.length} />
                 </Col>
-                {/* <Col xs={24} sm={24} md={4} lg={3} xl={3}>
-                <Statistic title="Active Tax" value={_.filter(this.props.datas, function(o) { if (o.status === 'Active') return o }).length} />
-                </Col>
-                <Col xs={24} sm={24} md={4} lg={3} xl={3}>
-                <Statistic title="Inactive Tax" value={_.filter(this.props.datas, function(o) { if (o.status === 'InActive') return o }).length} />
-                </Col> */}
             </Row>
           </PageHeader>
           <br />
@@ -298,4 +301,4 @@ const mapStateToProps = (state) => ({
   datas: state.all_shippings,
 });
 
-export default connect(mapStateToProps, { fetchShipping })(tax);
+export default connect(mapStateToProps, { fetchShipping,fetchCategories,fetchSubCategories,fetchProducts,fetchUsers })(tax);

@@ -39,12 +39,12 @@ export const ProductReview = (props) => {
     <h3 className="text-primary">{reviews && reviews.length>0 && reviews.length} Reviews</h3>
     {reviews!==false &&
 
-        
+            <>
             <List>
             {reviews.map((rv)=>{
                 return(
-                    <List.Item key={rv._id} style={{marginBottom:'1rem'}}>
-                        <List.Header>{rv.user_id.name}  <Rate value={rv.rating} disabled/> | <Moment format="LLLL">{rv.createdAt}</Moment>
+                    <List.Item key={rv._id} style={{marginBottom:'1.5rem'}}>
+                        <List.Header>{rv.user_id.name}  <Rate value={rv.rating} disabled/>
                             <div style={{float:'right'}}>
                             
                             <DrawerProductReviewInfo data={rv} bigButton={false} />
@@ -59,12 +59,15 @@ export const ProductReview = (props) => {
                             </Popconfirm>
                             </div>
                         </List.Header>
+                        <small><Moment format="LLLL">{rv.createdAt}</Moment></small>
                         <br />
-                        {rv.comment}
+                        <br />
+                        <p>{rv.comment}</p>
                     </List.Item>
                 )
             })}
             </List>
+            </>
 
     }
     <br/>

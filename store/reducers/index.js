@@ -10,6 +10,7 @@ import productReducer from './productReducer'
 import dynamicDatasReducer from './dynamicDatasReducer'
 import authReducer from './authReducer'
 import shippingReducer from './shippingReducer'
+import shippingRuleReducer from './shippingRuleReducer'
 import couponReducer from './couponReducer'
 import orderReducer from './orderReducer'
 import courierReducer from './courierReducer'
@@ -23,11 +24,16 @@ import cartitemsReducer from './cartitemsReducer'
 import reviewReducer from './reviewReducer'
 import userLastVisitedProductsReducer from './userLastVisitedProductsReducer'
 import paymentHistoryReducer from './paymentHistoryReducer'
+import currencyActiveReducer from './currencyActiveReducer'
+import currencyReducer from './currencyReducer'
+import rolesReducer from './rolesReducer'
 
 export default combineReducers({
     auth:authReducer,
     dynamic_datas:dynamicDatasReducer,
     post:postReducer,
+    currency:currencyReducer,
+    currency_active:currencyActiveReducer,
     all_brands:brandReducer,
     all_category:categoryReducer,
     all_subcategory:subcategoryReducer,
@@ -36,6 +42,7 @@ export default combineReducers({
     all_taxes:taxReducer,
     all_coupons:couponReducer,
     all_shippings:shippingReducer,
+    all_shippingrules:shippingRuleReducer,
     all_products:productReducer,
     all_orders:orderReducer,
     all_couriers:courierReducer,
@@ -48,5 +55,6 @@ export default combineReducers({
     all_cartitems:cartitemsReducer,
     all_reviews:reviewReducer,
     all_user_last_visited_productlist:userLastVisitedProductsReducer,
-    all_payment_history:paymentHistoryReducer
+    all_payment_history:paymentHistoryReducer,
+    all_roles:rolesReducer
 })

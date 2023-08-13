@@ -46,7 +46,9 @@ export class index extends Component {
     searchText: "",
     searchedColumn: "",
     tableLoading: false,
-    segmented:'View All'
+    segmented:'View All',
+    pageSize:10
+
   };
 
   componentDidMount() {
@@ -545,9 +547,11 @@ export class index extends Component {
             <Table
               columns={columns}
               dataSource={this.props.products}
-              pagination={{ pageSize: 10 }}
+              // pagination={{ pageSize: 10 }}
               loading={this.state.tableLoading}
               scroll={{ x: 500 }}
+              onChange={(e)=>this.setState({pageSize:e.pageSize})}
+              pagination={{ pageSize: this.state.pageSize, pageSizeOptions: ['10', '20', '50', '100', '150', '200', '500'] }}
             />
           }
 

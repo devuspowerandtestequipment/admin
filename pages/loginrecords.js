@@ -38,6 +38,8 @@ export class Loginrecords extends Component {
     searchText: "",
     searchedColumn: "",
     tableLoading: false,
+    pageSize:10
+
   };
 
   componentDidMount() {
@@ -356,20 +358,26 @@ export class Loginrecords extends Component {
 
         render: (data) => (
           <>
-            {/* <CouponsEditDrawer data={data} />
-            &nbsp; */}
-            <DrawerUserLoginDetails data={data} />
+            {this.props.auth && this.props.auth.admin_role && //<===View login record role check
+                this.props.auth.admin_role.login_record_view &&
+                  <DrawerUserLoginDetails data={data} />
+            }
+            
             &nbsp;
-            <Popconfirm
-              title="Are you sure to delete this category?"
-              onConfirm={() => this.handleDelete(data._id)}
-              okText="Yes"
-              cancelText="No"
-            >
-              <Button type="danger" icon={<DeleteOutlined />}>
-                Delete
-              </Button>
-            </Popconfirm>
+            {this.props.auth && this.props.auth.admin_role && //<===Delete login record role check
+              this.props.auth.admin_role.login_record_delete &&
+                <Popconfirm
+                title="Are you sure to delete this category?"
+                onConfirm={() => this.handleDelete(data._id)}
+                okText="Yes"
+                cancelText="No"
+                >
+                <Button type="danger" icon={<DeleteOutlined />}>
+                  Delete
+                </Button>
+                </Popconfirm>
+            }
+            
           </>
         ),
       },
@@ -389,14 +397,19 @@ export class Loginrecords extends Component {
             onBack={() => window.history.back()}
             className="site-page-header-gray"
             title="Login Records"
-            extra={[<Popconfirm 
-              title="Are you sure to clear all datas?"
-              placement="topRight"
-              // description="Are you sure to clear all datas?"
-              onConfirm={this.clearAllDatas}
-              okText="Yes"
-              cancelText="No"
-          ><Button type='primary'>Clear All</Button></Popconfirm>]}
+            extra={[
+              this.props.auth && this.props.auth.admin_role && //<===Clear login record role check
+                this.props.auth.admin_role.login_record_clear &&
+                  <Popconfirm 
+                    title="Are you sure to clear all datas?"
+                    placement="topRight"
+                    onConfirm={this.clearAllDatas}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <Button type='primary'>Clear All</Button>
+                  </Popconfirm>
+            ]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>
@@ -405,13 +418,18 @@ export class Loginrecords extends Component {
             </Row>
           </PageHeader>
           <br />
-          <Table
-            columns={columns}
-            dataSource={this.props.datas}
-            pagination={{ pageSize: 10 }}
-            loading={this.state.tableLoading}
-            scroll={{ x: 500 }}
-          />
+          {this.props.auth && this.props.auth.admin_role && //<===Login list role check
+            this.props.auth.admin_role.login_record_index &&
+              <Table
+                columns={columns}
+                dataSource={this.props.datas}
+                loading={this.state.tableLoading}
+                scroll={{ x: 500 }}
+                onChange={(e)=>this.setState({pageSize:e.pageSize})}
+                pagination={{ pageSize: this.state.pageSize, pageSizeOptions: ['10', '20', '50', '100', '150', '200', '500'] }}
+              />
+          }
+          
         </Content>
       </Body>
     );
@@ -420,6 +438,7 @@ export class Loginrecords extends Component {
 
 const mapStateToProps = (state) => ({
   datas: state.all_loginrecords,
+  auth:state.auth
 });
 
 export default connect(mapStateToProps, { fetchLoginRecords })(Loginrecords);

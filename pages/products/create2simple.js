@@ -786,8 +786,8 @@ export class create2simple extends Component {
           // console.log(file)
         
           if(file.type==='image/jpg' || file.type==='image/jpeg' || file.type==='image/png' || file.type==='image/webp'){
-            if (file.size >= 15728640){
-              message.warning(`${file.path} size is more than 15mb.`)
+            if (file.size >= 5242880){
+              message.warning(`${file.path} size is more than 5mb.`)
 
             }else{
               totalfiles.push(file); 
@@ -878,8 +878,8 @@ export class create2simple extends Component {
           // console.log(file)
         
           if(file.type==='image/jpg' || file.type==='image/jpeg' || file.type==='image/png' || file.type==='image/webp'){
-            if (file.size >= 15728640){
-              message.warning(`${file.path} size is more than 15mb.`)
+            if (file.size >= 5242880){
+              message.warning(`${file.path} size is more than 5mb.`)
 
             }else{
               totalfiles.push(file); 
@@ -1058,7 +1058,6 @@ export class create2simple extends Component {
                 </Form.Field>
               </div>
 
-                <br />
                 <br />
                 <br />
 
@@ -1492,13 +1491,12 @@ export class create2simple extends Component {
                     <div>
                       <h3 className="text-primary">Collections</h3>
                       <Form.Field control="select" name='product_collection' value={this.state.data.product_collection} onChange={this.handleChange}>
-                        <option value="">N/A</option>
-
+                      <option value="">N/A</option>
                         <option value="New Arrivals">New Arrivals</option>
                         <option value="Special Offer">Special Offer</option>
                         <option value="Trending">Trending</option>
                         <option value="Most Popular">Most Popular</option>
-                        <option value="Most Popular">Featured products</option>
+                        <option value="Featured Products">Featured Products</option>
                         <option value="Todays Deals">Todays Deals</option>
 
                         

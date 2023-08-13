@@ -10,16 +10,14 @@ import { Grid } from "semantic-ui-react";
 import SettingsAccount from "./components/settings/SettingsAccount";
 import SettingsSecurity from "./components/settings/SettingsSecurity";
 import SettingsTheme from "./components/settings/SettingsTheme";
+import SettingsCurrency from "./components/settings/SettingsCurrency";
+import SettingsAdminRoles from "./components/settings/SettingsAdminRoles";
+import SettingsCache from "./components/settings/SettingsCache";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 export class Settings extends Component {
  
-
-  componentDidMount() {
-  }
-
-
 
   render() {
     
@@ -49,19 +47,22 @@ export class Settings extends Component {
             <div className="site-layout-background" style={{ padding: 24 }}>
             <Tabs defaultActiveKey="1">
                 <Tabs.TabPane tab="Account" key="1">
-                    <SettingsAccount />
+                  <SettingsAccount />
                 </Tabs.TabPane>
                 <Tabs.TabPane tab="Security" key="2">
-                    <SettingsSecurity />
+                  <SettingsSecurity />
                 </Tabs.TabPane>
                 <Tabs.TabPane tab="Themes" key="96">
-                    <SettingsTheme />
+                  <SettingsTheme />
                 </Tabs.TabPane>
-                <Tabs.TabPane tab="Notifications" key="4">
-                Content of Tab Pane 3
+                <Tabs.TabPane tab="Currency" key="4">
+                  <SettingsCurrency />
                 </Tabs.TabPane>
-                <Tabs.TabPane tab="Team" key="5">
-                Content of Tab Pane 3
+                {/* <Tabs.TabPane tab="Admin Roles" key="5">
+                  <SettingsAdminRoles />
+                </Tabs.TabPane> */}
+                <Tabs.TabPane tab="Cache" key="6">
+                  <SettingsCache />
                 </Tabs.TabPane>
             </Tabs>
             </div>

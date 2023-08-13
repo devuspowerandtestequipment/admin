@@ -42,6 +42,8 @@ export class Notifications extends Component {
     searchText: "",
     searchedColumn: "",
     tableLoading: false,
+    pageSize:10
+
   };
 
   componentDidMount() {
@@ -391,9 +393,12 @@ export class Notifications extends Component {
             rowKey={record => record.id}
             columns={columns}
             dataSource={this.props.datas}
-            pagination={{ pageSize: 10 }}
+            // pagination={{ pageSize: 10 }}
             loading={this.state.tableLoading}
             scroll={{ x: 500 }}
+
+            onChange={(e)=>this.setState({pageSize:e.pageSize})}
+              pagination={{ pageSize: this.state.pageSize, pageSizeOptions: ['10', '20', '50', '100', '150', '200', '500'] }}
           />
         </Content>
       </Body>

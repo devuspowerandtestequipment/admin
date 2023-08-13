@@ -22,6 +22,28 @@
 // @import 'colordesign';
 
 
+
+
+//MOVE IT TO THEME FILE  <<<<<<<<<<<<<<<<<<<<<<===========================imp
+.ui.multiple.dropdown>.text {
+  line-height: 1;
+  font-weight: 400;
+}
+.ui.multiple.selection.dropdown {
+  font-weight: 500 !important;
+  min-height: 49px !important;
+  border-radius: 7px !important;
+  border: 1px solid rgba(34,36,38,.15);
+}
+.ui.multiple.dropdown>.label {
+  font-weight: 500;
+}
+//MOVE IT TO THEME FILE  <<<<<<<<<<<<<<<<<<<<<<===========================imp
+
+
+
+
+
 body{
   font-family: 'Outfit', sans-serif;
 }
@@ -308,6 +330,9 @@ span.ppo121 {
 }
 .text-primary {
   color: #1890ff;
+}
+.text-danger {
+  color: red;
 }
 
 
@@ -781,4 +806,36 @@ span.ppo121 {
   p{
     line-height: 12px;
   }
+}
+
+.admin_roles{
+  p{
+    margin-bottom: 10px;
+    font-size: 15px;
+    span{
+      color: #1890ff;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  }
+}
+
+.admin_role_create{
+  h5{
+    font-size: 17px;
+    font-weight: 500;
+  }
+  p{
+    // font-weight: 500;
+    span{
+      float: right;
+    }
+  }
+}
+
+span.anticon.anticon-close {
+  color: white;
+  background-color: red;
+  padding: 3px 3px;
+  border-radius: 30px;
 }

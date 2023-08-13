@@ -73,16 +73,16 @@ export const view = (props) => {
 
 
         //seen all cart under this user
-        // axios.get(`${process.env.backendURL}/cart/admin_setseen_all_userscart/${this.props.user_id}`)
+        // axios.get(`${process.env.backendURL}/cart/admin_setseen_all_userscart/${props.user_id}`)
         // .then(response=>{
-        //     this.props.fetchCartItems();
+        //     props.fetchCartItems();
         // })
 
 
         //clear all notification activity under this user
-        // this.props.clearSingleNotificationByUserId(this.props.user_id)
+        // props.clearSingleNotificationByUserId(props.user_id)
         // .then(rw=>{
-        //     this.props.fetchNotifications();
+        //     props.fetchNotifications();
         // })
 
 
@@ -130,6 +130,12 @@ export const view = (props) => {
     }
     
 
+    if(props.auth && props.auth.admin_role){  //<===User view role check
+        if(props.auth.admin_role.user_view===false){
+            router.push('/users')
+        }
+    }
+
 
     return (
         <Body>
@@ -163,21 +169,29 @@ export const view = (props) => {
                 
                 }
                 extra={[
-                    <Button type="primary" icon={<LoginOutlined />} onClick={()=>login_as_user()}>
-                        Account Login
-                    </Button>,
-                    <UserEditDrawer data={data} getData={getData} />,
-                    <Popconfirm
-                    title="Are you sure to delete this user?"
-                    onConfirm={deleteUser}
-                    // onCancel={cancel}
-                    okText="Yes"
-                    cancelText="No"
-                    >
-                        <Button type="danger" icon={<DeleteOutlined />}>
-                        Delete
-                        </Button>
-                    </Popconfirm>
+                    props.auth && props.auth.admin_role && //<===User login as user role check
+                        props.auth.admin_role.user_login_as_user_account &&
+                            <Button type="primary" icon={<LoginOutlined />} onClick={()=>login_as_user()}>
+                                Account Login
+                            </Button>,
+
+                    props.auth && props.auth.admin_role && //<===User edit role check
+                        props.auth.admin_role.user_edit &&
+                            <UserEditDrawer data={data} getData={getData} />,
+
+                    
+                    props.auth && props.auth.admin_role && //<===User delete role check
+                        props.auth.admin_role.user_delete &&
+                            <Popconfirm
+                            title="Are you sure to delete this user?"
+                            onConfirm={deleteUser}
+                            okText="Yes"
+                            cancelText="No"
+                            >
+                                <Button type="danger" icon={<DeleteOutlined />}>
+                                Delete
+                                </Button>
+                            </Popconfirm>
                     
                 ]}
                 />
@@ -204,6 +218,11 @@ export const view = (props) => {
                     <UpdateProfileImage auth={data} getData={getData} />
                 </center>
                 <h2>{data.name}</h2>
+
+                <p><b>Type:</b> {data.type}</p>
+                {data.type==='Admin' &&
+                    <p><b>Role:</b> {data.admin_role && data.admin_role.name}</p>
+                }
                 
                 <p><b>Email:</b> {data.email} 
                 ({data.emailverification?'Verified':`Not Verified`})
@@ -214,7 +233,8 @@ export const view = (props) => {
                 <p><b>Country:</b> {data.country}</p>
                 <p><b>State:</b> {data.state}</p>
                 <p><b>City:</b> {data.city}</p>
-                <p><b>Type:</b> {data.type}</p>
+                
+
                 <p><b>Status:</b> {data.status?'Active':'Inactive'}</p>
                 <p><b>Created By:</b> {data.created_by}</p>
                 <p><b>Created At:</b> <Moment format="LLL">{data.createdAt}</Moment> ({moment(data.createdAt).fromNow()})</p>
@@ -278,7 +298,9 @@ export const view = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    auth:state.auth
+});
 
 export default connect(mapStateToProps, {fetchUsers})(view);
 

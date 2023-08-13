@@ -273,3 +273,39 @@ export function calculateSumWithShippingAndCoupon(amount,result){
     }
 
 }
+
+
+//<<<=== calculate dicountmount amount of cartitems (without tax) ===>>> shipping.js
+export function calculateDiscounts(matcheddiscounts,cart_raw_amount){
+
+    var total_discounts=0;
+    matcheddiscounts.forEach(element => {
+        if(element.type==='1'){
+            if(element.calculation_type==='Discount'){
+                total_discounts=total_discounts-per(element.percentage,cart_raw_amount);
+            }else{
+                total_discounts=total_discounts+per(element.percentage,cart_raw_amount);
+            }
+        }else{
+            //amount
+            if(element.calculation_type==='Discount'){
+                total_discounts=total_discounts-element.amount;
+            }else{
+                total_discounts=total_discounts+element.amount;
+            }
+        }
+    });
+    // console.log('total_discounts',total_discounts);
+    return total_discounts;
+}
+
+
+
+
+
+export function calculateAllTotalAmount(datas){
+    // console.log('datas',calculatePlusMinusArray(allArrayToNumber(datas)))
+
+
+    return calculatePlusMinusArray(allArrayToNumber(datas));
+}
