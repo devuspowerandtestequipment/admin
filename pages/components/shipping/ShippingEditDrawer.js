@@ -301,7 +301,7 @@ export const ShippingEditDrawer = (props) => {
               required
             >
               <option value="shipping_method">Shipping Method</option>
-              <option value="shipping_rule">Shipping Rule</option>
+              <option value="shipping_rule">Shipping Tax</option>
               <option value="discount">Discount</option>
 
             </Form.Field>
