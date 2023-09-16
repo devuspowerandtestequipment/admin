@@ -786,8 +786,9 @@ export class create2simple extends Component {
           // console.log(file)
         
           if(file.type==='image/jpg' || file.type==='image/jpeg' || file.type==='image/png' || file.type==='image/webp'){
-            if (file.size >= 5242880){
-              message.warning(`${file.path} size is more than 5mb.`)
+            if (file.size >= 20971520){ //20mb
+               
+              message.warning(`${file.path} size is more than 20mb.`)
 
             }else{
               totalfiles.push(file); 
