@@ -1754,11 +1754,11 @@ export class create3config extends Component {
                       <Form.Field control="select" name='product_collection' value={this.state.data.product_collection} onChange={this.handleChange}>
                         <option value="">N/A</option>
                         <option value="New Arrivals">New Arrivals</option>
-                        <option value="Special Offer">Special Offer</option>
+                        {/* <option value="Special Offer">Special Offer</option> */}
                         <option value="Trending">Trending</option>
-                        <option value="Most Popular">Most Popular</option>
-                        <option value="Featured Products">Featured Products</option>
-                        <option value="Todays Deals">Todays Deals</option>
+                        {/* <option value="Most Popular">Most Popular</option> */}
+                        {/* <option value="Featured Products">Featured Products</option> */}
+                        {/* <option value="Todays Deals">Todays Deals</option> */}
                       </Form.Field>
                     </div>
                   </div>
