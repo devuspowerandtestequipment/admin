@@ -361,17 +361,17 @@ export const View = (props) => {
 
                         </Table>
                         <div style={{textAlign:'end'}}>
-                            <h5 className='ct121d' style={{marginBottom:'-17px'}}><b>Subtotal:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_subtotal} /></h5>
-                            <h5 className='ct121d' style={{marginBottom:'-17px'}}><b>Taxes:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_taxes} /></h5>
-                            <h5 className='ct121d' style={{marginBottom:'-17px'}}><b>Discounts:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_discount} /></h5>
-                            <h5 className='ct121d' style={{marginBottom:'-17px'}}><b>Shipping:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_shippingrule} /></h5>
-                            <h5 className='ct121d' style={{marginBottom:'-17px'}}><b>Shipping Method:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_shipping} /> <br />
+                            <h5 className='ct121d' style={{marginBottom:'0px'}}><b>Subtotal:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_subtotal} /></h5>
+                            <h5 className='ct121d' style={{marginBottom:'0px'}}><b>Taxes:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_taxes} /></h5>
+                            <h5 className='ct121d' style={{marginBottom:'0px'}}><b>Discounts:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_discount} /></h5>
+                            <h5 className='ct121d' style={{marginBottom:'0px'}}><b>Shipping:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_shippingrule} /></h5>
+                            <h5 className='ct121d' style={{marginBottom:'0px'}}><b>Shipping Method:&nbsp;&nbsp;</b> <DynamicAmount amount={data.amount_shipping} /> <br />
                                 ({data.shipping_method.name})
                             </h5>
                             {data.coupon
                             ?
                             <>
-                            <h5 className='ct121d' style={{marginBottom:'4px'}}><b>Coupon:&nbsp;&nbsp;</b> {data.coupon.name}</h5>
+                            <h5 className='ct121d' style={{marginBottom:'0px'}}><b>Coupon:&nbsp;&nbsp;</b> {data.coupon.name}</h5>
                             <small>
                                 {data.coupon.type==='1'
                                 ?
