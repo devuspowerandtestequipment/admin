@@ -1250,7 +1250,7 @@ export class create2simple extends Component {
                       <option value="No">No</option>
                     </Form.Field>
                   </Form.Group>
-                  <FormGroup widths="equal">
+                  {/* <FormGroup widths="equal">
                   <Form.Input
                     fluid
                     label="Minimum Order"
@@ -1267,7 +1267,7 @@ export class create2simple extends Component {
                     min={1}
                     name="maximum_order" value={this.state.data.maximum_order} onChange={this.handleChange} required
                   />
-                </FormGroup>
+                </FormGroup> */}
               </div>
               <br />
 
