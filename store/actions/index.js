@@ -225,3 +225,10 @@ export const fetchAllRoles = () => async dispatch => {
     const response = await axios.get(`${process.env.backendURL}/rolesadmin`);
     dispatch({type:'GET_ALL_ROLES', payload:response.data.datas})
 }
+
+
+//FETCH ALL PAYMENT HISTORY
+export const fetchAllContacts = () => async dispatch => {
+    const response = await axios.get(`${process.env.backendURL}/contact`);
+    dispatch({type:'GET_ALL_CONTACTS', payload:response.data.datas})
+}

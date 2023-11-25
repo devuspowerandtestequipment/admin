@@ -319,9 +319,17 @@ export class MainBody extends Component {
                   <Menu.Item key="carts" icon={<FaBook className={total_cart===0?'':'blink_me'} />}  onClick={()=>this.redirectRouter('/carts')}>
                     {total_cart===0?'Carts':<span className='blink_me'>Carts</span>}
                   </Menu.Item>
-                  <Menu.Item key="8x" icon={<FaBook className={total_contactus===0?'':'blink_me'} />}>
+                  {/* <Menu.Item key="8x" icon={<FaBook className={total_contactus===0?'':'blink_me'} />}>
                     {total_contactus===0?'Contact Request':<span className='blink_me'>Contact Request</span>}
+                  </Menu.Item> */}
+
+
+                  
+
+                  <Menu.Item key="contactrequest" icon={<FaWallet />} onClick={()=>this.redirectRouter('/contactrequest')}>
+                    Contact Request
                   </Menu.Item>
+
                   <Menu.Item key="paymenthistory" icon={<FaWallet />} onClick={()=>this.redirectRouter('/paymenthistory')}>
                     Payment History
                   </Menu.Item>

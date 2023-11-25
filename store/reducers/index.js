@@ -27,6 +27,7 @@ import paymentHistoryReducer from './paymentHistoryReducer'
 import currencyActiveReducer from './currencyActiveReducer'
 import currencyReducer from './currencyReducer'
 import rolesReducer from './rolesReducer'
+import contactReducer from './contactReducer'
 
 export default combineReducers({
     auth:authReducer,
@@ -56,5 +57,6 @@ export default combineReducers({
     all_reviews:reviewReducer,
     all_user_last_visited_productlist:userLastVisitedProductsReducer,
     all_payment_history:paymentHistoryReducer,
-    all_roles:rolesReducer
+    all_roles:rolesReducer,
+    all_contacts:contactReducer
 })
