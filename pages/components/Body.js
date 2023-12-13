@@ -18,14 +18,14 @@ export const Body = (props) => {
     // }
 
     props.fetchDynamicDatas();
-    props.fetchNotifications();
-    props.fetchCartItems();
-    props.fetchUsers();
-    props.fetchOrders();
-    props.fetchAllReviews();
-    props.fetchAllLastVisitedProducts();
-    props.fetchAllPaymentHistory();
-    props.fetchAllRoles();
+    // props.fetchNotifications();
+    // props.fetchCartItems();
+    // props.fetchUsers();
+    // props.fetchOrders();
+    // props.fetchAllReviews();
+    // props.fetchAllLastVisitedProducts();
+    // props.fetchAllPaymentHistory();
+    // props.fetchAllRoles();
     
     if(props.auth){
       props.fetchAuthUser(props.auth._id)

@@ -385,8 +385,8 @@ export class CartItemsList extends Component {
             &nbsp;
       
             {data.product_type==='Simple'
-            ?<a href={`/products/create2simple?codeid=${data.parent_product_id}`} target="_blank" rel="noopener"><Button type="primary" icon={<EyeOutlined />}>View Product</Button></a>
-            :<a href={`/products/create3config?codeid=${data.parent_product_id}`} target="_blank" rel="noopener"><Button type="primary" icon={<EyeOutlined />}>View Product</Button></a>
+            ?<Link href={`/products/create2simple?codeid=${data.parent_product_id}`} ><Button type="primary" icon={<EyeOutlined />}>View Product</Button></Link>
+            :<Link href={`/products/create3config?codeid=${data.parent_product_id}`} ><Button type="primary" icon={<EyeOutlined />}>View Product</Button></Link>
             }
 
             &nbsp;

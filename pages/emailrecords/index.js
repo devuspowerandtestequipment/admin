@@ -343,8 +343,7 @@ export class Emailrecords extends Component {
         render: (data) => (
           this.props.auth && this.props.auth.admin_role && //<===Emailrecord view role check
             this.props.auth.admin_role.email_record_view &&
-              <a href={`/emailrecords/${data._id}`}  target="_blank" rel="noopener"><Button type='primary' icon={<EyeOutlined />}>View</Button></a>
-          
+              <Link href={`/emailrecords/${data._id}`} ><Button type='primary' icon={<EyeOutlined />}>View</Button></Link>
         ),
       },
     ];

@@ -378,7 +378,7 @@ export class index extends Component {
         render: (data) => (
           this.props.auth && this.props.auth.admin_role && //<===Order view role check
             this.props.auth.admin_role.order_record_view &&
-              <a href={`/orders/${data._id}`}  target="_blank" rel="noopener"><Button type="primary" icon={<EyeOutlined />}>View</Button></a>
+              <Link href={`/orders/${data._id}`} ><Button type="primary" icon={<EyeOutlined />}>View</Button></Link>
             
          
         ),

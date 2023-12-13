@@ -377,13 +377,13 @@ export class Reviews extends Component {
             &nbsp;
             {data.product_type==='Configurable'
             ?
-            <a href={`/products/create3config?codeid=${data.product_id}&target=review`}  target="_blank" rel="noopener">
+            <Link href={`/products/create3config?codeid=${data.product_id}&target=review`} >
               <Button type="primary" icon={<EyeOutlined />}>View</Button>
-            </a>
+            </Link>
             :
-            <a href={`/products/create2simple?codeid=${data.product_id}&target=review`} target="_blank" rel="noopener">
+            <Link href={`/products/create2simple?codeid=${data.product_id}&target=review`} >
               <Button type="primary" icon={<EyeOutlined />}>View</Button>
-            </a>
+            </Link>
             }
             &nbsp;
             <Popconfirm

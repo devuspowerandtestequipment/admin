@@ -470,15 +470,15 @@ export class index extends Component {
             
             &nbsp;
             {data.step==='step2config'
-            ?<a href={`/products/create2config?codeid=${data._id}`} target="_blank" rel="noopener"><Button type="primary" icon={<EditOutlined />}>Edit</Button></a>
+            ?<Link href={`/products/create2config?codeid=${data._id}`} ><Button type="primary" icon={<EditOutlined />}>Edit</Button></Link>
             :<></>}
 
             {data.step==='step3config'
-            ?<a href={`/products/create3config?codeid=${data._id}`} target="_blank" rel="noopener"><Button type="primary" icon={<EditOutlined />}>Edit</Button></a>
+            ?<Link href={`/products/create3config?codeid=${data._id}`} ><Button type="primary" icon={<EditOutlined />}>Edit</Button></Link>
             :<></>}
 
             {data.step==='step2simple'
-            ?<a href={`/products/create2simple?codeid=${data._id}`} target="_blank" rel="noopener"><Button type="primary" icon={<EditOutlined />}>Edit</Button></a>
+            ?<Link href={`/products/create2simple?codeid=${data._id}`} ><Button type="primary" icon={<EditOutlined />}>Edit</Button></Link>
             :<></>}
             
           </>

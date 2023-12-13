@@ -367,11 +367,11 @@ export class PaymentHistory extends Component {
         render: (data) => (
           <>
             {data.order_id && 
-                <a href={`/orders/${data.order_id._id}`}  target="_blank" rel="noopener">
+                <Link href={`/orders/${data.order_id._id}`}>
                     <Button type="primary" icon={<EyeOutlined />}>
                         View
                     </Button>
-                </a>
+                </Link>
             }
             
             
