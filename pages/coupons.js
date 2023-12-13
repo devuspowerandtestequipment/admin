@@ -266,7 +266,8 @@ export class coupons extends Component {
             onBack={() => window.history.back()}
             className="site-page-header-gray"
             title="Coupons"
-            extra={[<CouponsCreateDrawer />]}
+            extra={[<CouponsCreateDrawer key="1" />]}
+            
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

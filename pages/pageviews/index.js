@@ -390,6 +390,7 @@ export class PageViews extends Component {
                     onConfirm={this.clearAllDatas}
                     okText="Yes"
                     cancelText="No"
+                    key="1"
                 ><Button type='primary'>Clear All</Button></Popconfirm>
             ]}
           >

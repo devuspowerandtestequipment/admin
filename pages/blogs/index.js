@@ -233,7 +233,7 @@ export class Blog extends Component {
             onBack={() => window.history.back()}
             ghost={false}
             className="site-page-header-gray"
-            extra={[<Link href='/blogs/create'><Button type="primary" icon={<PlusOutlined />}>Create Blog</Button></Link>]}
+            extra={[<Link href='/blogs/create' key="1"><Button type="primary" icon={<PlusOutlined />}>Create Blog</Button></Link>]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={2} xl={2}>

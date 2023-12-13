@@ -50,7 +50,7 @@ export const MonthlyPageVisit = (props) => {
         <Area {...config} />
         <center>
             <br />
-            <p>Last 7 days's page visit</p>
+            <p>Last 7 days page visit</p>
         </center>
         </>
     )

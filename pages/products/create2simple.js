@@ -1288,6 +1288,7 @@ export class create2simple extends Component {
                             value={this.state.data[attr._id]} 
                             onChange={this.handleChange} 
                             required={attr.isrequired==='Yes'?true:false} 
+                            key={key}
                           />
                        
                         )
@@ -1297,7 +1298,7 @@ export class create2simple extends Component {
                       //CHECK IF SINGLE DROPDOWN
                       if(attr.type==='Single Dropdown'){
                         return(
-                          <Form.Field label={attr.name} control="select" name={attr._id} value={this.state.data[attr._id]} onChange={this.handleChange}  required={attr.isrequired==='Yes'?true:false}>
+                          <Form.Field key={key} label={attr.name} control="select" name={attr._id} value={this.state.data[attr._id]} onChange={this.handleChange}  required={attr.isrequired==='Yes'?true:false}>
                             <option value="">Select {attr.name}</option>
                             {attr.attrbutes_list.map((dta)=>{
                               return(
@@ -1317,7 +1318,7 @@ export class create2simple extends Component {
                           }
                         })
                         return(
-                          <div className="field">
+                          <div className="field" key={key}>
                             <label>{attr.name}</label>
                             <Dropdown fluid multiple selection options={options} name={attr._id} 
                             value={this.state.data[attr._id]} 

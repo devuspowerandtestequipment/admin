@@ -29,7 +29,7 @@ const date = new Date();
 
 const { Header, Content, Footer, Sider } = Layout;
 
-export const index = (props) => {
+export const Index = (props) => {
 
   const router = useRouter();
   const [loaded,setLoaded]=useState(false);
@@ -246,4 +246,4 @@ const mapStateToProps = (state) => ({
   auth:state.auth
 });
 
-export default connect(mapStateToProps)(index);
+export default connect(mapStateToProps)(Index);

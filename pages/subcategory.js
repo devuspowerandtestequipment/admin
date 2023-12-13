@@ -288,7 +288,7 @@ export class subcategory extends Component {
             title="Sub Categories"
             onBack={() => window.history.back()}
 
-            extra={[<SubcategoryCreateDrawer />]}
+            extra={[<SubcategoryCreateDrawer key='1' />]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

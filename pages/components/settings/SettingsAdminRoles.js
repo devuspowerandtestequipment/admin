@@ -26,7 +26,7 @@ export const SettingsAdminRoles = (props) => {
           {props.roles &&
             props.roles.map((role)=>{
               return(
-                <div className={role._id}>
+                <div className={role._id} key={role._id}>
                   <span style={{fontSize:'16px'}}>{role.name}</span>
                   &nbsp;<DrawerRoleEdit role={role} key={role._id} />
                   &nbsp;

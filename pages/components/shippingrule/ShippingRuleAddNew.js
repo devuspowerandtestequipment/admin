@@ -244,7 +244,7 @@ export const ShippingRuleAddNew = (props) => {
             <option value=''>Select</option>
             {shipping_rules_name.map((name)=>{
                 return(
-                    <option value={name.value}>{name.text}</option>
+                    <option value={name.value} key={name.value}>{name.text}</option>
                 )
             })}
         </Form.Field>

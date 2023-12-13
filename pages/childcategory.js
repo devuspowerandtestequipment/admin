@@ -302,7 +302,7 @@ export class childcategory extends Component {
 
             className="site-page-header-gray"
             title="Child Categories"
-            extra={[<ChildCategoryCreateDrawer />]}
+            extra={[<ChildCategoryCreateDrawer key="1" />]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

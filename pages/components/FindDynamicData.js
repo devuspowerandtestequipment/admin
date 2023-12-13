@@ -86,7 +86,7 @@ export const FindDynamicData = (props) => {
             {props.value.map((lp,key)=>{
               if(findHaveParent(props.find,lp,props.get,props.parentAttributeId)){ //check if not bloank
                 return(
-                  <li>{findHaveParent(props.find,lp,props.get,props.parentAttributeId)}</li>
+                  <li key={props.parentAttributeId}>{findHaveParent(props.find,lp,props.get,props.parentAttributeId)}</li>
                 )
               }
             })}

@@ -248,7 +248,7 @@ export class ShippingRule extends Component {
             className="site-page-header-gray"
             title="Shipping Rules"
             onBack={() => window.history.back()}
-            extra={[<ShippingruleCreateDrawer />]}
+            extra={[<ShippingruleCreateDrawer  key='1' />]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

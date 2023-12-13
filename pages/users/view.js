@@ -63,10 +63,10 @@ export const view = (props) => {
             // <Button type="primary" icon={<PlusOutlined />}>
             //   Login as User
             // </Button>,
-            <Button type="primary" icon={<PlusOutlined />}>
+            <Button type="primary" icon={<PlusOutlined />} key='1'>
               Edit User
             </Button>,
-            <Button type="danger" icon={<PlusOutlined />}>
+            <Button type="danger" icon={<PlusOutlined />}  key='2'>
               Delete User
             </Button>
           ]}

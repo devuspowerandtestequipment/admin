@@ -238,6 +238,7 @@ export class tax extends Component {
               onConfirm={() => this.handleDelete(data._id)}
               okText="Yes"
               cancelText="No"
+              key="1"
             >
               <Button type="danger" icon={<DeleteOutlined />}>
                 Delete
@@ -261,7 +262,8 @@ export class tax extends Component {
             className="site-page-header-gray"
             title="Courier"
             onBack={() => window.history.back()}
-            extra={[<CourierCreateDrawer />]}
+            extra={[<CourierCreateDrawer  key="1"/>]}
+            
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

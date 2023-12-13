@@ -79,7 +79,7 @@ export class MainBody extends Component {
   
 
 
-  componentWillReceiveProps(){
+  UNSAFE_componentWillReceiveProps(){
     this.stateUpdate();
 
     //   alert('componentWillReceiveProps')

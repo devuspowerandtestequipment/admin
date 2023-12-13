@@ -20,7 +20,7 @@ import FindDynamicData from "../components/FindDynamicData";
 const { Content } = Layout;
 
 
-export const index = (props) => {
+export const Index = (props) => {
   const router = useRouter()
   const [parentdata, setParentData] = useState(null);
   const [childDatas, setChildDatas] = useState(null);
@@ -140,7 +140,7 @@ export const index = (props) => {
               
                 return(
 
-                  <div >
+                  <div key={num}>
                     <h5> 
                       <FindDynamicData redux_state={`attributes`} find='_id' value={ddwn[0]} get='name' />
                     </h5>
@@ -170,7 +170,7 @@ export const index = (props) => {
           {childDatas && 
             _.filter(childDatas,_.omitBy(childFilterDropdownSelected, _.isNil)).map((cd)=>{
               return(
-                <p>{cd.name}</p>
+                <p key={cd.name}>{cd.name}</p>
               )
             })
           }
@@ -194,4 +194,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(index);
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

@@ -361,6 +361,7 @@ export class Notifications extends Component {
                 onConfirm={() => this.handleClearAllNotification()}
                 okText="Yes"
                 cancelText="No"
+                key="1"
               >
                 <Button type='primary' danger icon={<DeleteOutlined />}>Clear all</Button>
               </Popconfirm>,

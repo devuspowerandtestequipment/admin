@@ -30,7 +30,7 @@ export default class InputSort extends Component {
   }
 
 
-  componentWillReceiveProps(props){
+  UNSAFE_componentWillReceiveProps(props){
     this.setState({
       items:props.parentdata,
     })

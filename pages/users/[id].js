@@ -36,7 +36,7 @@ import UserTabPaymentHistory from "../components/users/view/UserTabPaymentHistor
 const { Header, Content, Footer, Sider } = Layout;
 const { TabPane } = Tabs;
 
-export const view = (props) => {
+export const View = (props) => {
     const router = useRouter();
     const [saving_record,setSaving]=useState(false);
     const [data,setData]=useState(false);
@@ -302,5 +302,5 @@ const mapStateToProps = (state) => ({
     auth:state.auth
 });
 
-export default connect(mapStateToProps, {fetchUsers})(view);
+export default connect(mapStateToProps, {fetchUsers})(View);
 

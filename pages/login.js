@@ -13,7 +13,7 @@ import ls from 'localstorage-slim';
 import * as ACTION  from '../store/types'
 
 
-export const login = (props) => {
+export const Login = (props) => {
   const router = useRouter();
   const [data,setData]=useState({email:'',password:'',ipinfo:'',deviceinfo:{
     osName:osName,
@@ -149,4 +149,4 @@ export const login = (props) => {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, {setAuthUser})(login);
+export default connect(mapStateToProps, {setAuthUser})(Login);

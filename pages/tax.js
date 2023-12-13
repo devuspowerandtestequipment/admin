@@ -267,7 +267,7 @@ export class tax extends Component {
 
             className="site-page-header-gray"
             title="Taxes"
-            extra={[<TaxCreateDrawer />]}
+            extra={[<TaxCreateDrawer key='1' />]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

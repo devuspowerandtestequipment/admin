@@ -275,7 +275,7 @@ export class tax extends Component {
             className="site-page-header-gray"
             title="Shipping"
             onBack={() => window.history.back()}
-            extra={[<ShippingCreateDrawer />]}
+            extra={[<ShippingCreateDrawer key='1' />]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

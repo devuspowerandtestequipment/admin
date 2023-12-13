@@ -502,7 +502,7 @@ export class index extends Component {
             // breadcrumb={{ routes }}
             // subTitle="This is a subtitle"
             
-            extra={[<Link href='/products/create'><Button type='primary' icon={<PlusOutlined />}>Create Product</Button></Link>]}
+            extra={[<Link href='/products/create' key='1'><Button type='primary' icon={<PlusOutlined />}>Create Product</Button></Link>]}
           >
             {/* <Descriptions
               size="small"

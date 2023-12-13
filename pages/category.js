@@ -251,7 +251,7 @@ export class category extends Component {
             className="site-page-header-gray"
             title="Categories"
             onBack={() => window.history.back()}
-            extra={[<CategoryCreateDrawer />]}
+            extra={[<CategoryCreateDrawer key="1" />]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

@@ -279,7 +279,7 @@ export class webtypesearch extends Component {
                                 <h3>{entry[0]}</h3>
                                 {entry[1].map((da)=>{
                                     return(
-                                        <p>{da} <FindDynamicData redux_state={[entry[0]]} find='name' value={da} get='_id' /></p>
+                                        <p key={da._id}>{da} <FindDynamicData redux_state={[entry[0]]} find='name' value={da} get='_id'  /></p>
                                     )
                                 })}
                                 <br />
@@ -592,7 +592,7 @@ export class webtypesearch extends Component {
                             {this.state.resultdatasprice &&
                                 this.state.resultdatasprice.map((price)=>{
                                     return(
-                                        <p onClick={()=>this.handleSearchByPrice(price[0],price[1])}>₹{price[0]} to ₹{price[1]}</p>
+                                        <p key={price[0]} onClick={()=>this.handleSearchByPrice(price[0],price[1])}>₹{price[0]} to ₹{price[1]}</p>
                                     )
                                 })
                             }
@@ -622,7 +622,7 @@ export class webtypesearch extends Component {
                             <Grid>
                                 {this.state.resultdatas.map((data)=>{
                                     return(
-                                        <Grid.Column computer={4} style={{backgroundColor:'#fff', padding:'10px', margin:'10px'}}>
+                                        <Grid.Column key={data.name} computer={4} style={{backgroundColor:'#fff', padding:'10px', margin:'10px'}}>
                                             <h3>{data.name}</h3>
                                             {data.type==='Simple'
                                             ?

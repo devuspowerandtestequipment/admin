@@ -275,7 +275,7 @@ export class brands extends Component {
             onBack={() => window.history.back()}
             // breadcrumb={{ routes }}
             // subTitle="This is a subtitle"
-            extra={[<BrandCreateDrawer />]}
+            extra={[<BrandCreateDrawer key="1" />]}
           >
             {/* <Descriptions
               size="small"

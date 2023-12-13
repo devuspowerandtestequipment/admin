@@ -239,7 +239,7 @@ export class index extends Component {
             className="site-page-header-gray"
             onBack={() => window.history.back()}
             title="Attributes"
-            extra={[<AttributeCreateDrawer />]}
+            extra={[<AttributeCreateDrawer key='1' />]}
           >
             <Row>
                 <Col xs={24} sm={24} md={4} lg={3} xl={3}>

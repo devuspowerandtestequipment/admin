@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-export const pagerefresh = (props) => {
+export const Pagerefresh = (props) => {
 
   const router=useRouter();
 
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => ({})
 
 const mapDispatchToProps = {}
 
-export default connect(mapStateToProps, mapDispatchToProps)(pagerefresh)
+export default connect(mapStateToProps, mapDispatchToProps)(Pagerefresh)

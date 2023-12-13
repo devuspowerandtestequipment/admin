@@ -1531,7 +1531,8 @@ export class create3config extends Component {
                             name={attr._id} 
                             value={this.state.data[attr._id]} 
                             onChange={this.handleChange} 
-                            required={attr.isrequired==='Yes'?true:false} 
+                            required={attr.isrequired==='Yes'?true:false}
+                            key={key} 
                           />
                        
                         )
@@ -1567,7 +1568,7 @@ export class create3config extends Component {
                           }
                         })
                         return(
-                          <div className="field">
+                          <div className="field" key={key}>
                             <label>{attr.name}</label>
                             <Dropdown fluid multiple selection options={options} name={attr._id} 
                             value={this.state.data[attr._id]} 

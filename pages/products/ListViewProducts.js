@@ -115,7 +115,7 @@ export const ListViewProducts = (props) => {
         <Table.Body>
         {_.sortBy(products, 'name').map((data,key)=>{
         return(
-          <Table.Row>
+          <Table.Row key={key}>
             <Table.Cell style={{maxWidth:'400px'}}>{key+1} {data.name}</Table.Cell>
             <Table.Cell style={{maxWidth:'150px'}}>{data.sku}</Table.Cell>
             <Table.Cell style={{maxWidth:'800px'}}>{data.type}</Table.Cell>
