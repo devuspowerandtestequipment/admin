@@ -1045,7 +1045,7 @@ export class create2simple extends Component {
                 <Form.Input fluid label="SKU" placeholder="Product SKU" name="sku" value={this.state.data.sku}  required/>
               
                 <Form.Field>
-                <label>Descripion</label>
+                <label>Description</label>
                 <CKEditor
                 // editor={ ClassicEditor }
                                 config={{
@@ -1405,7 +1405,7 @@ export class create2simple extends Component {
                 {/* {this.validator.message(`meta title`, this.state.data.meta_title, 'required|min:2|max:70')} */}
                 <Form.Field
                   fluid
-                  label="Meta Descripion"
+                  label="Meta Description"
                   control="textarea"
                   rows="3"
                   name='meta_desc' value={this.state.data.meta_desc} onChange={this.handleChange} required

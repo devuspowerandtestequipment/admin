@@ -1115,7 +1115,7 @@ export class create3config extends Component {
                 {this.validator.message('product url', this.state.data.url, 'required')} */}
 
                 <Form.Field>
-                <label>Descripion</label>
+                <label>Description</label>
                 <CKEditor
                 // editor={ ClassicEditor }
                                 config={{
