@@ -33,7 +33,7 @@ export const DynamicNotificationStatus = ({status,user}) => {
   }
   if(status==='notification_new_contactus'){
     return (
-      <span>Conatct Request</span>
+      <span>Contact Request</span>
     )
   }
   if(status==='notification_new_order'){

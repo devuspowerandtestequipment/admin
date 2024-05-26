@@ -74,7 +74,7 @@ const router = useRouter();
             {/* <p>New contact us message received New contact us message received New contact us message received New contact us message receivedNew contact us message received New contact us message received New contact us message received New contact us message received</p> */}
             </div>
             <div className="headertext98_button1">
-                <Button size="small" type='primary' style={{width:'100%'}}>View all Notifications</Button>
+                <Button size="small" type='primary' style={{width:'100%'}} onClick={()=>router.push('/notifications')}>View all Notifications</Button>
             </div>
             </>
             :
